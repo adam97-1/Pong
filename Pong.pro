@@ -16,7 +16,7 @@ win32{
 
 unix{
     DESTDIR = ./Binary/unix
-
+    INCLUDEPATH += ./inc
     LIBS += -lsfml-audio
     LIBS += -lsfml-graphics
     LIBS += -lsfml-network
@@ -25,4 +25,8 @@ unix{
 }
 
 SOURCES += \
-        main.cpp
+        src/Gui/graphicInterface.cpp \
+        src/main.cpp
+
+HEADERS += \
+    inc/Gui/graphicInterface.h
