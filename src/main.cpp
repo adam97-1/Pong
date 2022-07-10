@@ -3,6 +3,7 @@
 
 int main()
 {
+
     GraphicInteface graphicInterface;
 
     // run the program as long as the window is open

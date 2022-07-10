@@ -3,20 +3,33 @@
 
 #include <SFML/Graphics.hpp>
 
+
+
 /*!
  * \brief The GraphicInteface is the main graphic class.
  */
 class GraphicInteface
 {
 public:
+
+    /*!
+     * \brief The GraphicView enum
+     */
+    enum GraphicView
+    {
+        MENU        =   0,
+        SETINGS     =   1,
+        GAME        =   3
+    };
+
     /*!
      * \brief void GraphicInteface( void ) create main window.
      *
      * Default parameter of window:
-     *      - Wight: 800px
-     *      - Height: 600px
-     *      - WindowMode: FullScreen
+     *      - Wight: 800pix
+     *      - Height: 600pix
      *      - BeatsPerPixel: 32
+     *      - Window name: Pong
      */
     GraphicInteface();
 
@@ -28,8 +41,14 @@ public:
      */
     sf::RenderWindow & accessWindow();
 
+    /*!
+     * \brief updateGraphic select view to display and call virtual method updateView for select view.
+     */
+    void updateGraphic();
+
 private:
     sf::RenderWindow m_window; //! Main window.
+
 };
 
 #endif // GRAPHICINTERFACE_H
