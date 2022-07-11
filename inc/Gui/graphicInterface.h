@@ -18,12 +18,12 @@ public:
     enum GraphicView
     {
         MENU        =   0,
-        SETINGS     =   1,
-        GAME        =   3
+        SETTINGS    =   1,
+        GAME        =   2
     };
 
     /*!
-     * \brief void GraphicInteface( void ) create main window.
+     * \brief GraphicInteface create main window.
      *
      * Default parameter of window:
      *      - Wight: 800pix

@@ -9,6 +9,7 @@ int main()
     // run the program as long as the window is open
     while (graphicInterface.accessWindow().isOpen())
     {
+        graphicInterface.accessWindow().display();
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (graphicInterface.accessWindow().pollEvent(event))

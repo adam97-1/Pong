@@ -26,7 +26,9 @@ unix{
 
 SOURCES += \
         src/Gui/graphicInterface.cpp \
-        src/main.cpp
+        src/main.cpp \
+        src/Gui/view.cpp
 
 HEADERS += \
-    inc/Gui/graphicInterface.h
+    inc/Gui/graphicInterface.h \
+    inc/Gui/view.h
