@@ -16,13 +16,13 @@ void View::handleInputKeyboard()
 {
     if(pressedKey(sf::Keyboard::Key::Up))
     {
-        m_selectMenuOptions = (++m_selectMenuOptions % 7);
-        std::cout << "m_selectMenuOptions: " << m_selectMenuOptions << std::endl;
+        setSelectMenuOptions((getSelectMenuOptions() + 1 )% 7);
+        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
     }
     if(releasedKey(sf::Keyboard::Key::Down))
     {
-        m_selectMenuOptions = (--m_selectMenuOptions % 7);
-        std::cout << "m_selectMenuOptions: " << m_selectMenuOptions << std::endl;
+        setSelectMenuOptions((getSelectMenuOptions() - 1 )% 7);
+        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
     }
 }
 
@@ -42,6 +42,11 @@ bool View::releasedKey(sf::Keyboard::Key key)
     bool tempResult = (oldStateKey.at(key+1) && !stateKey);
     oldStateKey.at(key+1) = stateKey;
     return tempResult;
+}
+
+void View::setSelectMenuOptions(unsigned int selectMenuOptions)
+{
+    m_selectMenuOptions = selectMenuOptions;
 }
 
 
