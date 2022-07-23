@@ -8,6 +8,7 @@ OBJECTS_DIR = ./Binary/Obj
 win32{
     DESTDIR = ./Binary/win/
     INCLUDEPATH += C:/Lib/SFML-2.5.1/include
+    INCLUDEPATH += ./inc
     LIBS += -LC:/Lib/SFML-2.5.1/lib
     LIBS += -LC:/Lib/SFML-2.5.1/bin
     CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-main -lsfml-network -lsfml-window -lsfml-system
@@ -16,7 +17,7 @@ win32{
 
 unix{
     DESTDIR = ./Binary/unix
-
+    INCLUDEPATH += ./inc
     LIBS += -lsfml-audio
     LIBS += -lsfml-graphics
     LIBS += -lsfml-network
@@ -25,4 +26,10 @@ unix{
 }
 
 SOURCES += \
-        main.cpp
+        src/Gui/graphicInterface.cpp \
+        src/main.cpp \
+        src/Gui/view.cpp \
+
+HEADERS += \
+    inc/Gui/graphicInterface.h \
+    inc/Gui/view.h
