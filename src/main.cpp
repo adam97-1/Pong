@@ -10,6 +10,7 @@ int main()
     while (graphicInterface.accessWindow().isOpen())
     {
         graphicInterface.accessWindow().display();
+        graphicInterface.updateGraphic();
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (graphicInterface.accessWindow().pollEvent(event))

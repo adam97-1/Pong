@@ -2,8 +2,8 @@
 
 GraphicInteface::GraphicInteface()
 {
-    constexpr uint window_width = 800;
-    constexpr uint window_height = 600;
+    constexpr unsigned int window_width = 800;
+    constexpr unsigned int window_height = 600;
 
         m_window.create(sf::VideoMode(window_width, window_height), "Pong");
 
