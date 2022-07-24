@@ -12,9 +12,18 @@
 class MainMenu : public View
 {
 public:
-    MainMenu();
+    MainMenu(sf::RenderWindow & window);
+    ~MainMenu();
+    void updateView();
+
+protected:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
+    void setTextString();
+    void setTextPosition();
+
+
     Text m_title;                       //! Object display title of view.
     std::vector<Text> m_menuOptions;    //! Object display all options in menu.
 };

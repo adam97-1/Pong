@@ -1,8 +1,9 @@
 #include "Gui/view.h"
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
-View::View()
+View::View(sf::RenderWindow & window) : m_window(window)
 {
 
 }
@@ -26,7 +27,7 @@ void View::handleInputKeyboard()
     }
 }
 
-bool View::pressedKey(sf::Keyboard::Key key)
+bool View::pressedKey(const sf::Keyboard::Key key) const
 {
     static std::vector<bool> oldStateKey(sf::Keyboard::Key::KeyCount, false);
     bool stateKey = sf::Keyboard::isKeyPressed(key);
@@ -35,7 +36,7 @@ bool View::pressedKey(sf::Keyboard::Key key)
     return tempResult;
 }
 
-bool View::releasedKey(sf::Keyboard::Key key)
+bool View::releasedKey(const sf::Keyboard::Key key) const
 {
     static std::vector<bool> oldStateKey(sf::Keyboard::Key::KeyCount, false);
     bool stateKey = sf::Keyboard::isKeyPressed(key);
@@ -44,9 +45,38 @@ bool View::releasedKey(sf::Keyboard::Key key)
     return tempResult;
 }
 
-void View::setSelectMenuOptions(unsigned int selectMenuOptions)
+void View::setSelectMenuOptions(const int selectMenuOptions)
 {
-    m_selectMenuOptions = selectMenuOptions;
+    if(selectMenuOptions > getCountMenuOptions())
+        m_selectMenuOptions = 0;
+    else if(selectMenuOptions < 0)
+        m_selectMenuOptions = getCountMenuOptions();
+    else
+        m_selectMenuOptions = selectMenuOptions;
+}
+
+int View::getSelectMenuOptions() const
+{
+    return m_selectMenuOptions;
+}
+
+void View::setCountMenuOptions(const int countMenuOptions)
+{
+    if(countMenuOptions < 0)
+    {
+        std::cout << "void View::setCountMenuOptions(const int countMenuOptions): countMenuOptions is negative value";
+    }
+    m_countMenuOptions = countMenuOptions;
+}
+
+int View::getCountMenuOptions() const
+{
+    return m_countMenuOptions;
+}
+
+sf::RenderWindow &View::accessWindow()
+{
+    return m_window;
 }
 
 

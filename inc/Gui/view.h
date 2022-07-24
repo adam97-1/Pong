@@ -11,7 +11,7 @@ public:
     /*!
      * \brief Default constructor.
      */
-    View();
+    View(sf::RenderWindow & window);
     /*!
      * \brief Default virtual destructor.
      */
@@ -34,29 +34,39 @@ protected:
      * \param key is enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
      * \return return true if key is pres (change state with low to high), false otherwise.
      */
-    bool pressedKey(sf::Keyboard::Key key);
+    bool pressedKey(const sf::Keyboard::Key key) const;
 
     /*!
      * \brief releasedKey check release key of keyboard.
      * \param key is enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
      * \return return true if key is release (change state with high to low), false otherwise.
      */
-    bool releasedKey(sf::Keyboard::Key key);
+    bool releasedKey(const sf::Keyboard::Key key) const;
 
     /*!
      * \brief setSelectMenuOptions sets the selected position option in menu.
      * \param selectMenuOptions is value to be set as selected option in menu.
      */
-    void setSelectMenuOptions(unsigned int selectMenuOptions);
+    void setSelectMenuOptions(const int selectMenuOptions);
 
     /*!
      * \brief getSelectMenuOptions gets the selected position option in menu.
      * \return return value of selected position option in menu.
      */
-    unsigned int getSelectMenuOptions();
+    int getSelectMenuOptions() const;
 
+    void setCountMenuOptions(const int countMenuOptions);
+
+    int getCountMenuOptions() const;
+
+    sf::RenderWindow & accessWindow();
+
+
+protected:
+    int m_countMenuOptions {0};
 private:
-    unsigned int m_selectMenuOptions {0};   //! actual select option in display menu.
+    int m_selectMenuOptions {0};   //! actual select option in display menu.
+    sf::RenderWindow &m_window;
 };
 
 #endif // VIEW_H

@@ -2,6 +2,7 @@
 #define GRAPHICINTERFACE_H
 
 #include <SFML/Graphics.hpp>
+#include "Gui/mainmenu.h"
 
 
 
@@ -48,6 +49,7 @@ public:
 
 private:
     sf::RenderWindow m_window; //! Main window.
+    MainMenu m_mainMenu {m_window};
 
 };
 
