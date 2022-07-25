@@ -1,23 +1,18 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#ifndef SETTINGSMENU_H
+#define SETTINGSMENU_H
 
-#include <vector>
-#include <Gui/view.h>
-#include <Gui/text.h>
+#include <SFML/Graphics.hpp>
+#include "Gui/view.h"
 
-/*!
- * \brief The MainMenu class inherit from View.
- * This class contains all elements for display on main menu.
- */
-class MainMenu : public View
+
+class SettingsMenu : public View
 {
 public:
     /*!
-     * \brief MainMenu is a default constructor. It Creates and stets all text in the view.
+     * \brief SettingsMenu is a default constructor. It Creates and stets all text in the view.
      * \param window is a reference of graphic window, which display this view.
      */
-    MainMenu(sf::RenderWindow & window);
-    ~MainMenu();
+    SettingsMenu(sf::RenderWindow & window);
 
     /*!
      * \brief updateView gets all inputs, update look and draw all object for display.
@@ -39,8 +34,7 @@ private:
      */
     void setTextString();
 
-
-
+    unsigned int m_audio {100};     //! Volume of sounds
 };
 
-#endif // MAINMENU_H
+#endif // SETTINGSMENU_H

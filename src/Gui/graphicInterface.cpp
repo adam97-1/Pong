@@ -17,5 +17,24 @@ sf::RenderWindow & GraphicInteface::accessWindow()
 void GraphicInteface::updateGraphic()
 {
     m_window.clear(sf::Color::Black);
-    m_mainMenu.updateView();
+    switch (getDisplayView()) {
+    case View::GraphicView::MENU:
+        setDisplayView(m_mainMenu.updateView());
+        break;
+    case View::GraphicView::SETTINGS:
+        setDisplayView(m_settingsMenu.updateView());
+    default:
+        break;
+    }
+
+}
+
+void GraphicInteface::setDisplayView(const View::GraphicView view)
+{
+    m_displayView = view;
+}
+
+View::GraphicView GraphicInteface::getDisplayView() const
+{
+    return m_displayView;
 }

@@ -1,36 +1,57 @@
 #include "Gui/mainmenu.h"
+#include <iostream>
 
 MainMenu::MainMenu(sf::RenderWindow & window) : View{window}
 {
     constexpr int quantityMenuOptions = 5;
     m_menuOptions.clear();
-    for(int i = 0; i<quantityMenuOptions; i++)
+    for(int i = 0; i < quantityMenuOptions; i++)
     {
-        m_menuOptions.push_back(*new Text());
+        Text *tempText_ptr = new Text;
+        m_menuOptions.push_back(*tempText_ptr);
+//        delete tempText_ptr;
     }
     this->setCountMenuOptions(quantityMenuOptions);
     setTextString();
+    setDisplayNextView(MainMenu::GraphicView::MENU);
 
 }
 
 MainMenu::~MainMenu()
 {
-    for(auto & text : m_menuOptions)
-        delete &text;
+//    for(auto & text : m_menuOptions)
+//        delete &text;
 }
 
-void MainMenu::updateView()
-{
-    handleInputKeyboard();
-    setTextPosition();
-    accessWindow().draw(*this);
-}
 
 void MainMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(m_title);
     for(const auto & text : m_menuOptions)
         target.draw(text);
+}
+
+void MainMenu::handleInputKeyboard()
+{
+    if(!accessWindow().hasFocus())
+        return;
+    View::handleInputKeyboard();
+    if(pressedKey(sf::Keyboard::Enter))
+    {
+        switch (getSelectMenuOptions()) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            setDisplayNextView(MainMenu::GraphicView::SETTINGS);
+            break;
+        case 4:
+            accessWindow().close();
+        default:
+            break;
+        }
+    }
 }
 
 void MainMenu::setTextString()
@@ -43,25 +64,14 @@ void MainMenu::setTextString()
     m_menuOptions.at(4).setString("5.   EXIT");
 }
 
-void MainMenu::setTextPosition()
+MainMenu::GraphicView MainMenu::updateView()
 {
-    sf::Vector2u windowSize = accessWindow().getSize();
-    sf::FloatRect rectTitle = m_title.getLocalBounds();
-    m_title.setOrigin(rectTitle.width/2, rectTitle.top);
-    m_title.setPosition(windowSize.x/2, windowSize.y/10);
-
-    int maxWidthText = 0;
-    for(const auto & text : m_menuOptions)
-    {
-        sf::FloatRect rectText = text.getLocalBounds();
-        if(maxWidthText < rectText.width)
-            maxWidthText = rectText.width;
-    }
-
-    int index = 0;
-    for(auto & text : m_menuOptions)
-    {
-        text.setPosition((windowSize.x - maxWidthText)/2, windowSize.y/10+index*text.getCharacterSize()*1.5+50);
-        index++;
-    }
+    setDisplayNextView(MainMenu::GraphicView::MENU);
+    handleInputKeyboard();
+    setMenuTextPosition();
+    updateMenuTextLook();
+    accessWindow().draw(*this);
+    return getDisplayNextView();
 }
+
+

@@ -5,15 +5,19 @@
 
 /*!
  * \brief The Text class inherit from <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Text.php">sf::Text</a>.
- * This class sets text on default settings, such as style of font, size of character, color etc.
+ * This class sets text on default style of font.
  */
 class Text : public sf::Text
 {
 public:
+    /*!
+     * \brief Text is a default constructor.
+     * It loads default font for text.
+     */
     Text();
 
 private:
-    sf::Font m_font;
+    sf::Font m_font;        //! Font for text
 };
 
 #endif // TEXT_H

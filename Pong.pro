@@ -26,6 +26,7 @@ unix{
 }
 
 SOURCES += \
+    src/Gui/settingsmenu.cpp \
     src/Gui/mainmenu.cpp \
     src/Gui/graphicInterface.cpp \
     src/main.cpp \
@@ -36,4 +37,5 @@ HEADERS += \
     inc/Gui/graphicInterface.h \
     inc/Gui/view.h \
     inc/Gui/mainmenu.h \
-    inc/Gui/text.h
+    inc/Gui/text.h \
+    inc/Gui/settingsmenu.h
