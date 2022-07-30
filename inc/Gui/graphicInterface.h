@@ -2,6 +2,8 @@
 #define GRAPHICINTERFACE_H
 
 #include <SFML/Graphics.hpp>
+#include "Gui/mainmenu.h"
+#include "Gui/settingsmenu.h"
 
 
 
@@ -11,17 +13,6 @@
 class GraphicInteface
 {
 public:
-
-    /*!
-     * \brief The GraphicView enum
-     */
-    enum GraphicView
-    {
-        MENU        =   0,
-        SETTINGS    =   1,
-        GAME        =   2
-    };
-
     /*!
      * \brief GraphicInteface create main window.
      *
@@ -46,8 +37,23 @@ public:
      */
     void updateGraphic();
 
+    /*!
+     * \brief setDisplayView sets an View for display on window.
+     * \param view enum of GraphicView
+     */
+    void setDisplayView(const View::GraphicView view);
+
+    /*!
+     * \brief getDisplayNextView gets an View for display on window.
+     * \return return enum of GraphicView
+     */
+    View::GraphicView getDisplayView() const;
+
 private:
-    sf::RenderWindow m_window; //! Main window.
+    sf::RenderWindow m_window;                                      //! Graphic window.
+    MainMenu m_mainMenu {m_window};                                 //! Main menu view.
+    SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
+    View::GraphicView m_displayView {View::GraphicView::MENU};      //! Display view.
 
 };
 
