@@ -2,10 +2,13 @@
 
 GraphicInteface::GraphicInteface()
 {
+    // Sets default resolution of window.
     constexpr unsigned int window_width = 800;
     constexpr unsigned int window_height = 600;
 
-    m_window.create(sf::VideoMode(window_width, window_height), "Pong", sf::Style::Close);
+    // Create window witch name Pong.
+    // Window isn't
+    m_window.create(sf::VideoMode(window_width, window_height), "Pong", sf::Style::None);
 
 }
 

@@ -118,7 +118,7 @@ protected:
 private:
     int m_selectMenuOptions {0};                        //! Actual select option in display menu.
     sf::RenderWindow &m_window;                         //! Reference in graphic window.
-    GraphicView m_displayNextView {GraphicView::MENU};      //! Select next view for display on window.
+    GraphicView m_displayNextView {GraphicView::MENU};  //! Select next view for display on window.
 };
 
 #endif // VIEW_H

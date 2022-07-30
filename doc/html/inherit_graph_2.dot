@@ -1,0 +1,14 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="sf::Drawable",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="View",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_view.html",tooltip="The View class inherit from sf::Drawable. It is the base to others class for display selected scene o..."];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="MainMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_main_menu.html",tooltip="The MainMenu class inherit from View. This class contains all elements for display on main menu."];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SettingsMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_settings_menu.html",tooltip=" "];
+}
