@@ -2,13 +2,6 @@
 
 GraphicInteface::GraphicInteface()
 {
-    // Sets default resolution of window.
-    constexpr unsigned int window_width = 800;
-    constexpr unsigned int window_height = 600;
-
-    // Create window witch name Pong.
-    // Window isn't resizable and don't have close button.
-    m_window.create(sf::VideoMode(window_width, window_height), "Pong", sf::Style::Close);
 
 }
 

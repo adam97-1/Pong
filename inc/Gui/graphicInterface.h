@@ -14,13 +14,7 @@ class GraphicInteface
 {
 public:
     /*!
-     * \brief GraphicInteface create main window.
-     *
-     * Default parameter of window:
-     *      - Wight: 800pix
-     *      - Height: 600pix
-     *      - BeatsPerPixel: 32
-     *      - Window name: Pong
+     * \brief GraphicInteface is a default constructor.
      */
     GraphicInteface();
 
