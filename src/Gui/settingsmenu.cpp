@@ -15,7 +15,8 @@ SettingsMenu::SettingsMenu(sf::RenderWindow & window) : View{window}
     }
     this->setCountMenuOptions(quantityMenuOptions);             // Sets quantity menu options for display on this view.
     m_availabeResolution = sf::VideoMode::getFullscreenModes();
-    accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height), "Pong", sf::Style::Fullscreen);
+    accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height
+                                        , m_availabeResolution.at(getSelectResolution()).bitsPerPixel), "Pong", sf::Style::Fullscreen);
     setTextString();                                            // Sets strings for text in the view.
     setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);    // Sets default next view for display.
 }
@@ -31,11 +32,12 @@ void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void SettingsMenu::setTextString()
 {
     m_title.setString("Settings");
-    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   AUDIO   " + std::to_string(getVloumeAudio()) +'%');
+    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');
     m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
-                                    + std::to_string(m_availabeResolution.at(getSelectResolution()).height));
+                                    + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
+                                    + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
     m_menuOptions.at(SettingsMenuOptions::APPLY).setString("3.   Apply");
-    m_menuOptions.at(SettingsMenuOptions::RBACK).setString("4.   BACK");
+    m_menuOptions.at(SettingsMenuOptions::RBACK).setString("4.   Back");
 
 }
 
@@ -78,36 +80,38 @@ void SettingsMenu::handleInputKeyboard()    // Check inputs for general view.
 
     // Check input special input for this view.
     //-----------------------------------------------------------------------
-    if(pressedKey(sf::Keyboard::Key::Left) || pressedKey(sf::Keyboard::Key::D))
+    if(holdKay(sf::Keyboard::Key::Left, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::D, sf::milliseconds(200)))
     {
         // Change volume of audio
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()-5);
-            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   AUDIO   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
+            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
         }
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()-1);
             // Update text in menu.
             m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
-                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height));
+                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
+                                            + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
         }
     }
-    if(pressedKey(sf::Keyboard::Key::Right) || pressedKey(sf::Keyboard::Key::A))
+    if(holdKay(sf::Keyboard::Key::Right, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::A, sf::milliseconds(200)))
     {
         // Change volume of audio
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()+5);
-            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   AUDIO   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
+            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
         }
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()+1);
             // Update text in menu.
             m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
-                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height));
+                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
+                                            + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
         }
     }
 
@@ -118,7 +122,8 @@ void SettingsMenu::handleInputKeyboard()    // Check inputs for general view.
         case SettingsMenuOptions::AUDIO:
             break;
         case SettingsMenuOptions::APPLY:
-            accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height), "Pong", sf::Style::Fullscreen);
+            accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height
+                                  , m_availabeResolution.at(getSelectResolution()).bitsPerPixel), "Pong", sf::Style::Fullscreen);
             break;
         case SettingsMenuOptions::RBACK:
             setDisplayNextView(SettingsMenu::GraphicView::MENU);

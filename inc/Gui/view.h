@@ -58,6 +58,14 @@ protected:
     bool releasedKey(const sf::Keyboard::Key key) const;
 
     /*!
+     * \brief holdKay check a pres and hold key of keyboard.
+     * \param key is an enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
+     * \param holdTime is a period after which return true.
+     * \return return true if hold the pressed key for holdTime.
+     */
+    bool holdKay(const sf::Keyboard::Key key, sf::Time holdTime) const;
+
+    /*!
      * \brief setSelectMenuOptions sets the selected position option in menu.
      * \param selectMenuOptions is value to be set as selected option in menu.
      */

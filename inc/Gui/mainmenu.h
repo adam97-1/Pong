@@ -34,6 +34,15 @@ protected:
     void handleInputKeyboard();
 
 private:
+
+    enum MainMenuOptions
+    {
+        Player1 = 0,
+        Player2,
+        Settings,
+        GameInfo,
+        Exit
+    };
     /*!
      * \brief setTextString sets all string for display text.
      */

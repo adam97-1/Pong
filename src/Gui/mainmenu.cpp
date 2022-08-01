@@ -47,15 +47,16 @@ void MainMenu::handleInputKeyboard()
     {
         // Check selected options and change view on corresponding next view.
         switch (getSelectMenuOptions()) {
-        case 0:
+        case MainMenuOptions::Player1:
             break;
-        case 1:
+        case MainMenuOptions::Player2:
             break;
-        case 2:
+        case MainMenuOptions::Settings:
             setDisplayNextView(MainMenu::GraphicView::SETTINGS);
             break;
-        case 4:
-            // If chose Exit. Close Game.
+        case MainMenuOptions::GameInfo:
+            break;
+        case MainMenuOptions::Exit:
             accessWindow().close();
         default:
             break;
@@ -67,11 +68,11 @@ void MainMenu::handleInputKeyboard()
 void MainMenu::setTextString()
 {
     m_title.setString("Pong Game");
-    m_menuOptions.at(0).setString("1.   1 PLAYER");
-    m_menuOptions.at(1).setString("2.   2 PLAYER");
-    m_menuOptions.at(2).setString("3.   SETTINGS");
-    m_menuOptions.at(3).setString("4.   GAME INFO");
-    m_menuOptions.at(4).setString("5.   EXIT");
+    m_menuOptions.at(MainMenuOptions::Player1).setString("1.   1 Player");
+    m_menuOptions.at(MainMenuOptions::Player2).setString("2.   2 Player");
+    m_menuOptions.at(MainMenuOptions::Settings).setString("3.   Settings");
+    m_menuOptions.at(MainMenuOptions::GameInfo).setString("4.   Game info");
+    m_menuOptions.at(MainMenuOptions::Exit).setString("5.   Exit");
 }
 
 MainMenu::GraphicView MainMenu::updateView()
