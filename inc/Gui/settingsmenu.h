@@ -9,7 +9,7 @@ class SettingsMenu : public View
 {
 public:
     /*!
-     * \brief SettingsMenu is a default constructor. It Creates and stets all text in the view.
+     * \brief SettingsMenu is a default constructor. It Creates and sets all text in the view.
      * \param window is a reference of graphic window, which display this view.
      */
     SettingsMenu(sf::RenderWindow & window);
@@ -24,7 +24,7 @@ protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     /*!
-     * \brief handleInputKeyboard gets and handling all inputs.
+     * \brief handleInputKeyboard gets and handles all inputs.
      */
     void handleInputKeyboard();
 
@@ -42,7 +42,7 @@ private:
     };
 
     /*!
-     * \brief setTextString sets all string for display text.
+     * \brief setTextString sets all string for display.
      */
     void setTextString();
 
@@ -52,26 +52,26 @@ private:
      */
     void setVloumeAudio(int volume);
     /*!
-     * \brief getVloumeAudio gets value if volume sounds.
+     * \brief getVloumeAudio gets value of sound's volume.
      * \return return volume of sounds.
      */
     int getVloumeAudio();
 
     /*!
-     * \brief setSelectResolution sets index of available resolution for display.
-     * \param select is a index of available resolutions.
+     * \brief setSelectResolution sets index of available resolutions for display.
+     * \param select is an index of available resolutions.
      */
     void setSelectResolution(int select);
 
     /*!
-     * \brief getSelectResolution gets index of available resolution for display.
-     * \return return index of selected resolution.
+     * \brief getSelectResolution gets index of available resolutions for display.
+     * \return return index of selected resolutions.
      */
     int getSelectResolution();
 
     int m_audio {100};                                  //! Volume of sounds.
-    std::vector<sf::VideoMode> m_availabeResolution;    //! Stored all support resolution of monitor.
-    int m_selectResolution {0};                         //! Selected resolution.
+    std::vector<sf::VideoMode> m_availabeResolution;    //! Stores all supported resolutions of monitor.
+    int m_selectResolution {0};                         //! Select resolution.
 };
 
 #endif // SETTINGSMENU_H

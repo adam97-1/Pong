@@ -4,7 +4,7 @@
 #include "Gui/text.h"
 /*!
  * \brief The View class inherit from <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Drawable.php">sf::Drawable</a>.
- * It is the base to others class for display selected scene of game.
+ * It is the base for others classes to display selected view of game.
  */
 class View : public sf::Drawable
 {
@@ -39,26 +39,26 @@ public:
 
 protected:
     /*!
-     * \brief handleInputKeyboard is method for handling input witch a keyboard.
+     * \brief handleInputKeyboard is method for handling input with a keyboard.
      */
     virtual void handleInputKeyboard();
 
     /*!
-     * \brief pressedKey check a pres key of keyboard.
+     * \brief pressedKey check a pressed key of keyboard.
      * \param key is an enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
-     * \return return true if key is pres (change state with low to high), false otherwise.
+     * \return return true if key is pressed (change state with low to high), false otherwise.
      */
     bool pressedKey(const sf::Keyboard::Key key) const;
 
     /*!
-     * \brief releasedKey check a release key of keyboard.
+     * \brief releasedKey check a released key of keyboard.
      * \param key is enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
-     * \return return true if key is release (change state with high to low), false otherwise.
+     * \return return true if key is released (change state with high to low), false otherwise.
      */
     bool releasedKey(const sf::Keyboard::Key key) const;
 
     /*!
-     * \brief holdKay check a pres and hold key of keyboard.
+     * \brief holdKay check a pressed and hold key of keyboard.
      * \param key is an enum <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Keyboard.php">sf::Keyboard::Key</a>.
      * \param holdTime is a period after which return true.
      * \return return true if hold the pressed key for holdTime.
@@ -90,13 +90,13 @@ protected:
     int getCountMenuOptions() const;
 
     /*!
-     * \brief setDisplayNextView sets an View for display on window in the next time.
+     * \brief setDisplayNextView sets a View for display on window in the next time.
      * \param view enum of GraphicView
      */
     void setDisplayNextView(const GraphicView view);
 
     /*!
-     * \brief getDisplayNextView gets an View for display on window in the next time.
+     * \brief getDisplayNextView gets a View for display on window in the next time.
      * \return return enum of GraphicView
      */
     GraphicView getDisplayNextView() const;

@@ -14,7 +14,7 @@ View::~View()
 
 void View::handleInputKeyboard()
 {
-    // Check press keys and change selected option in menu.
+    // Check for pressed keys and change selected option in menu accordingly.
     if(holdKay(sf::Keyboard::Key::Up, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::W, sf::milliseconds(200)))
     {
         setSelectMenuOptions(getSelectMenuOptions() - 1 );
@@ -30,30 +30,30 @@ void View::handleInputKeyboard()
 bool View::pressedKey(const sf::Keyboard::Key key) const
 
 {
-    static std::vector<bool> oldStateKey(101, false);           // Variable stored state all keys in keyboard. This variable stored state for before execute that method.
+    static std::vector<bool> oldStateKey(101, false);           // Variable stores states of all keys in keyboard. This variable stores states before that method executed.
                                                                 // Enum start with sf::Keyboard::Key::Unknown = -1, for that you can't use this value to method at(sf::Keyboard::Key::Unknown).
                                                                 // Then you have to add 1 to key.
 
     bool stateKey = sf::Keyboard::isKeyPressed(key);            // Check actual state of key.
-    bool tempResult = (!oldStateKey.at(key+1) && stateKey);     // Compare old state key witch actual state. If key was released and is pressed then return true.
+    bool tempResult = (!oldStateKey.at(key+1) && stateKey);     // Compare old state of key with actual state. If key was released and is pressed then return true.
     oldStateKey.at(key+1) = stateKey;                           // Update state of key.
     return tempResult;
 }
 
 bool View::releasedKey(const sf::Keyboard::Key key) const
 {
-    static std::vector<bool> oldStateKey(101, false);           // Variable stored state all keys in keyboard. This variable stored state for before execute that method.
+    static std::vector<bool> oldStateKey(101, false);           // Variable stores states of all keys in keyboard. This variable stores states before that method executed.
                                                                 // Enum start with sf::Keyboard::Key::Unknown = -1, for that you can't use this value to method at(sf::Keyboard::Key::Unknown).
                                                                 // Then you have to add 1 to key.
     bool stateKey = sf::Keyboard::isKeyPressed(key);            // Check actual state of key.
-    bool tempResult = (oldStateKey.at(key+1) && !stateKey);     // Compare old state key witch actual state. If key was pressed and is released then return true.
+    bool tempResult = (oldStateKey.at(key+1) && !stateKey);     // Compare old state key with actual state. If key was pressed and is released then return true.
     oldStateKey.at(key+1) = stateKey;                           // Update state of key.
     return tempResult;
 }
 
 bool View::holdKay(const sf::Keyboard::Key key, sf::Time holdTime) const
 {
-    static std::vector<bool> oldStateKey(101, false);                   // Variable stored state all keys in keyboard. This variable stored state for before execute that method.
+    static std::vector<bool> oldStateKey(101, false);                   // Variable stores states of all keys in keyboard. This variable stores states before that method executed.
                                                                         // Enum start with sf::Keyboard::Key::Unknown = -1, for that you can't use this value to method at(sf::Keyboard::Key::Unknown).
                                                                         // Then you have to add 1 to key.
 
@@ -62,7 +62,7 @@ bool View::holdKay(const sf::Keyboard::Key key, sf::Time holdTime) const
     bool tempResult = (!oldStateKey.at(key+1) && stateKey);             // Compare old state key witch actual state. If key was released and is pressed then return true.
     oldStateKey.at(key+1) = stateKey;                                   // Update state of key.
 
-    // If key is hold for holdTime. Return true and reset time;
+    // If key is held by holdTime. Return true and reset time;
     if(stateKey && pressTime.getElapsedTime() > holdTime)
     {
         pressTime.restart();
@@ -121,9 +121,9 @@ void View::setMenuTextPosition()
     sf::Vector2u windowSize = accessWindow().getSize();     // Gets resolution of window.
     sf::FloatRect rectTitle = m_title.getLocalBounds();     // Gets size of m_title.
     m_title.setOrigin(rectTitle.width/2, rectTitle.top);    // Changes origin point of the title.
-    m_title.setPosition(windowSize.x/2, windowSize.y/10);   // Sets positions title on top and center win widow.
+    m_title.setPosition(windowSize.x/2, windowSize.y/10);   // Sets title in the top-center position of the view.
 
-    // Checks max width witch all options text in menu.
+    // Checks max width of all options text in menu.
     int maxWidthText = 0;
     for(const auto & text : m_menuOptions)
     {
@@ -132,7 +132,7 @@ void View::setMenuTextPosition()
             maxWidthText = rectText.width;
     }
 
-    // Set positions of all options text on the basis of max width texts.
+    // Set positions of all options text according to maxWidthText.
     int index = 0;
     for(auto & text : m_menuOptions)
     {
@@ -147,7 +147,7 @@ void View::updateMenuTextLook()
     for(auto & text : m_menuOptions)
         text.setFillColor(sf::Color::White);
 
-    // Set color Red for selected option in menu.
+    // Set red color for selected option in menu.
     m_menuOptions.at(getSelectMenuOptions()).setFillColor(sf::Color::Red);
 }
 

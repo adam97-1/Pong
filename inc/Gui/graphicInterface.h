@@ -32,13 +32,13 @@ public:
     void updateGraphic();
 
     /*!
-     * \brief setDisplayView sets an View for display on window.
+     * \brief setDisplayView sets a View for display on window.
      * \param view enum of GraphicView
      */
     void setDisplayView(const View::GraphicView view);
 
     /*!
-     * \brief getDisplayNextView gets an View for display on window.
+     * \brief getDisplayNextView gets a View for display on window.
      * \return return enum of GraphicView
      */
     View::GraphicView getDisplayView() const;
