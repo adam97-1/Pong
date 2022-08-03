@@ -69,6 +69,13 @@ private:
      */
     int getSelectResolution();
 
+    /*!
+     * \brief getActualResorution check actual resolution and return index of availableResolution.
+     * \return return index of availableResolution. If this resolution isn't into availableResolution.
+     * Return -1 and print warning on console.
+     */
+    int getActualResorution();
+
     int m_audio {100};                                  //! Volume of sounds.
     std::vector<sf::VideoMode> m_availabeResolution;    //! Stores all supported resolutions of monitor.
     int m_selectResolution {0};                         //! Select resolution.

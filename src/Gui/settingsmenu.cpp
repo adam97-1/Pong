@@ -32,8 +32,8 @@ void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void SettingsMenu::setTextString()
 {
     m_title.setString("Settings");
-    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');
-    m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
+    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio           " + std::to_string(getVloumeAudio()) +'%');
+    m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution    " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
                                     + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
                                     + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
     m_menuOptions.at(SettingsMenuOptions::APPLY).setString("3.   Apply");
@@ -71,6 +71,22 @@ int SettingsMenu::getSelectResolution()
     return m_selectResolution;
 }
 
+int SettingsMenu::getActualResorution()
+{
+    int index = 0;
+    sf::VideoMode actualResorution = sf::VideoMode::getDesktopMode();                 // Gets actual resolution.
+    // Check if the actualResorution is into availableResolution. Then return index of this resolution.
+    for(const auto &res : m_availabeResolution)
+    {
+        if(res == actualResorution)
+            return index;
+        index++;
+    }
+    // If actualResorution isn't into availableResolution. Then return -1 and print warning.
+    std::cout << "This resolution isn't into vector of available resolution";
+    return -1;
+}
+
 void SettingsMenu::handleInputKeyboard()
 {
     // If window is active. It check inputs.
@@ -86,16 +102,11 @@ void SettingsMenu::handleInputKeyboard()
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()-5);
-            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
         }
         // Change resolution.
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()-1);
-            // Update text in menu.
-            m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
-                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
-                                            + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
         }
     }
     if(holdKay(sf::Keyboard::Key::Right, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::A, sf::milliseconds(200)))
@@ -104,16 +115,11 @@ void SettingsMenu::handleInputKeyboard()
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()+5);
-            m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio   " + std::to_string(getVloumeAudio()) +'%');     // Update text in menu.
         }
         // Change resolution.
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()+1);
-            // Update text in menu.
-            m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution  " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
-                                            + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
-                                            + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
         }
     }
 
@@ -129,6 +135,7 @@ void SettingsMenu::handleInputKeyboard()
             break;
         case SettingsMenuOptions::RBACK:
             setDisplayNextView(SettingsMenu::GraphicView::MENU);
+            setSelectResolution(getActualResorution());
             break;
         default:
             break;
@@ -142,7 +149,8 @@ SettingsMenu::GraphicView SettingsMenu::updateView()
     setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);        // Reset next view for display.
     handleInputKeyboard();                                          // Handling all inputs.
     setMenuTextPosition();                                          // Update positions of all text in menu.
-    updateMenuTextLook();                                           // Update look all text in menu.
+    setTextString();                                                // Update strings of all text in menu.
+    updateMenuTextLook();                                           // Update look of all text in menu.
     accessWindow().draw(*this);                                     // Draw all element witch this view on window.
     return getDisplayNextView();                                    // return next view for display.
 }
