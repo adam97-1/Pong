@@ -2,13 +2,6 @@
 
 GraphicInteface::GraphicInteface()
 {
-    // Sets default resolution of window.
-    constexpr unsigned int window_width = 800;
-    constexpr unsigned int window_height = 600;
-
-    // Create window witch name Pong.
-    // Window isn't
-    m_window.create(sf::VideoMode(window_width, window_height), "Pong", sf::Style::None);
 
 }
 
@@ -19,7 +12,10 @@ sf::RenderWindow & GraphicInteface::accessWindow()
 
 void GraphicInteface::updateGraphic()
 {
+    // Hidden all display element and sets background color of window on back.
     m_window.clear(sf::Color::Black);
+
+    // Check view for display and display it.
     switch (getDisplayView()) {
     case View::GraphicView::MENU:
         setDisplayView(m_mainMenu.updateView());

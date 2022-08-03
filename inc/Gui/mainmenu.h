@@ -6,14 +6,14 @@
 #include <Gui/text.h>
 
 /*!
- * \brief The MainMenu class inherit from View.
+ * \brief The MainMenu class inherits from View.
  * This class contains all elements for display on main menu.
  */
 class MainMenu : public View
 {
 public:
     /*!
-     * \brief MainMenu is a default constructor. It Creates and stets all text in the view.
+     * \brief MainMenu is a default constructor. It Creates and sets all text in the view.
      * \param window is a reference of graphic window, which display this view.
      */
     MainMenu(sf::RenderWindow & window);
@@ -29,13 +29,22 @@ protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     /*!
-     * \brief handleInputKeyboard gets and handling all inputs.
+     * \brief handleInputKeyboard gets and handles all inputs.
      */
     void handleInputKeyboard();
 
 private:
+
+    enum MainMenuOptions
+    {
+        Player1 = 0,
+        Player2,
+        Settings,
+        GameInfo,
+        Exit
+    };
     /*!
-     * \brief setTextString sets all string for display text.
+     * \brief setTextString sets all string for display.
      */
     void setTextString();
 

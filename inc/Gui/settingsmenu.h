@@ -9,7 +9,7 @@ class SettingsMenu : public View
 {
 public:
     /*!
-     * \brief SettingsMenu is a default constructor. It Creates and stets all text in the view.
+     * \brief SettingsMenu is a default constructor. It Creates and sets all text in the view.
      * \param window is a reference of graphic window, which display this view.
      */
     SettingsMenu(sf::RenderWindow & window);
@@ -24,17 +24,61 @@ protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     /*!
-     * \brief handleInputKeyboard gets and handling all inputs.
+     * \brief handleInputKeyboard gets and handles all inputs.
      */
     void handleInputKeyboard();
 
 private:
+
     /*!
-     * \brief setTextString sets all string for display text.
+     * \brief The SettingsMenuOptions enum of options in menu.
+     */
+    enum SettingsMenuOptions
+    {
+        AUDIO = 0,
+        RESOLUTION,
+        APPLY,
+        RBACK
+    };
+
+    /*!
+     * \brief setTextString sets all string for display.
      */
     void setTextString();
 
-    unsigned int m_audio {100};     //! Volume of sounds
+    /*!
+     * \brief setVloumeAudio sets volume of sounds.
+     * \param volume is volume of sounds.
+     */
+    void setVloumeAudio(int volume);
+    /*!
+     * \brief getVloumeAudio gets value of sound's volume.
+     * \return return volume of sounds.
+     */
+    int getVloumeAudio();
+
+    /*!
+     * \brief setSelectResolution sets index of available resolutions for display.
+     * \param select is an index of available resolutions.
+     */
+    void setSelectResolution(int select);
+
+    /*!
+     * \brief getSelectResolution gets index of available resolutions for display.
+     * \return return index of selected resolutions.
+     */
+    int getSelectResolution();
+
+    /*!
+     * \brief getActualResorution check actual resolution and return index of availableResolution.
+     * \return return index of availableResolution. If this resolution isn't into availableResolution.
+     * Return -1 and print warning on console.
+     */
+    int getActualResorution();
+
+    int m_audio {100};                                  //! Volume of sounds.
+    std::vector<sf::VideoMode> m_availabeResolution;    //! Stores all supported resolutions of monitor.
+    int m_selectResolution {0};                         //! Select resolution.
 };
 
 #endif // SETTINGSMENU_H

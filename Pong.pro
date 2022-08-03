@@ -2,6 +2,7 @@ TEMPLATE = app
 CONFIG += console c++11 static
 CONFIG -= app_bundle
 CONFIG -= qt
+QMAKE_LFLAGS += -static-libgcc
 
 OBJECTS_DIR = ./Binary/Obj
 
