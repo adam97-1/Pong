@@ -4,13 +4,15 @@
 #include <SFML/Graphics.hpp>
 #include "Gui/mainmenu.h"
 #include "Gui/settingsmenu.h"
+#include "settingseventlisteners.h"
+#include "Gui/gameview.h"
 
 
 
 /*!
  * \brief The GraphicInteface is the main graphic class.
  */
-class GraphicInteface
+class GraphicInteface : public SettingsEventListeners
 {
 public:
     /*!
@@ -46,8 +48,15 @@ public:
 private:
     sf::RenderWindow m_window;                                      //! Graphic window.
     MainMenu m_mainMenu {m_window};                                 //! Main menu view.
+    GameView m_gameView {m_window};                                 //! Game view.
     SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
     View::GraphicView m_displayView {View::GraphicView::MENU};      //! Display view.
+
+    /*!
+     * \brief onSettingsChangeResolution its handle change resolution.
+     * \param videoMode is actual resolution.
+     */
+    void onSettingsChangeResolution(sf::VideoMode resolution);
 
 };
 

@@ -4,7 +4,6 @@
 
 View::View(sf::RenderWindow & window) : m_window(window)
 {
-
 }
 
 View::~View()
@@ -18,12 +17,12 @@ void View::handleInputKeyboard()
     if(holdKay(sf::Keyboard::Key::Up, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::W, sf::milliseconds(200)))
     {
         setSelectMenuOptions(getSelectMenuOptions() - 1 );
-//        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
+        updateMenuTextLook();                                   // Update look of all text in menu.
     }
     if(holdKay(sf::Keyboard::Key::Down, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::S, sf::milliseconds(200)))
     {
         setSelectMenuOptions(getSelectMenuOptions() + 1 );
-//        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
+        updateMenuTextLook();                                   // Update look of all text in menu.
     }
 }
 
@@ -123,6 +122,7 @@ void View::setMenuTextPosition()
     m_title.setOrigin(rectTitle.width/2, rectTitle.top);    // Changes origin point of the title.
     m_title.setPosition(windowSize.x/2, windowSize.y/10);   // Sets title in the top-center position of the view.
 
+
     // Checks max width of all options text in menu.
     int maxWidthText = 0;
     for(const auto & text : m_menuOptions)
@@ -136,19 +136,30 @@ void View::setMenuTextPosition()
     int index = 0;
     for(auto & text : m_menuOptions)
     {
-        text.setPosition((windowSize.x - maxWidthText)/2, windowSize.y/10+index*text.getCharacterSize()*1.5+50);
+        text.setPosition((windowSize.x - maxWidthText)/2, windowSize.y/10+index*text.getCharacterSize()*1.5 + m_title.getCharacterSize()*2);
         index++;
     }
 }
 
 void View::updateMenuTextLook()
 {
-    // Reset all text color.
     for(auto & text : m_menuOptions)
-        text.setFillColor(sf::Color::White);
+    {
+        text.setFillColor(sf::Color::White);                        // Reset all text color.
+    }
 
     // Set red color for selected option in menu.
     m_menuOptions.at(getSelectMenuOptions()).setFillColor(sf::Color::Red);
+}
+
+void View::onSettingsChangeResolution(sf::VideoMode videoMode)
+{
+    m_title.setCharacterSize(videoMode.height/10);
+    for(auto & text : m_menuOptions)
+    {
+        text.setCharacterSize(videoMode.height/20);       // Adapts size of text for actual resolution.
+    }
+    setMenuTextPosition();
 }
 
 
