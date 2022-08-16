@@ -123,6 +123,7 @@ void View::setMenuTextPosition()
     m_title.setOrigin(rectTitle.width/2, rectTitle.top);    // Changes origin point of the title.
     m_title.setPosition(windowSize.x/2, windowSize.y/10);   // Sets title in the top-center position of the view.
 
+
     // Checks max width of all options text in menu.
     int maxWidthText = 0;
     for(const auto & text : m_menuOptions)
@@ -136,16 +137,19 @@ void View::setMenuTextPosition()
     int index = 0;
     for(auto & text : m_menuOptions)
     {
-        text.setPosition((windowSize.x - maxWidthText)/2, windowSize.y/10+index*text.getCharacterSize()*1.5+50);
+        text.setPosition((windowSize.x - maxWidthText)/2, windowSize.y/10+index*text.getCharacterSize()*1.5 + m_title.getCharacterSize()*2);
         index++;
     }
 }
 
 void View::updateMenuTextLook()
 {
-    // Reset all text color.
+    m_title.setCharacterSize(accessWindow().getSize().y/10);
     for(auto & text : m_menuOptions)
-        text.setFillColor(sf::Color::White);
+    {
+        text.setFillColor(sf::Color::White);                        // Reset all text color.
+        text.setCharacterSize(accessWindow().getSize().y/20);       // Adapts size of text for actual resolution.
+    }
 
     // Set red color for selected option in menu.
     m_menuOptions.at(getSelectMenuOptions()).setFillColor(sf::Color::Red);

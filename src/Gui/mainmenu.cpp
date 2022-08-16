@@ -50,6 +50,7 @@ void MainMenu::handleInputKeyboard()
         case MainMenuOptions::Player1:
             break;
         case MainMenuOptions::Player2:
+            setDisplayNextView(MainMenu::GraphicView::Player2);
             break;
         case MainMenuOptions::Settings:
             setDisplayNextView(MainMenu::GraphicView::SETTINGS);
