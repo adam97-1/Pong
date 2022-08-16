@@ -15,8 +15,8 @@ public:
     enum GraphicView
     {
         MENU        =   0,
-        SETTINGS    =   1,
-        GAME        =   2
+        SETTINGS,
+        Player2
     };
 
     /*!

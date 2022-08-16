@@ -15,7 +15,7 @@ public:
     SettingsMenu(sf::RenderWindow & window);
 
     /*!
-     * \brief updateView gets all inputs, update look and draw all object for display.
+     * \brief updateView gets all inputs, updates look and draw all object for display.
      * \return return enum for display next view.
      */
     GraphicView updateView();

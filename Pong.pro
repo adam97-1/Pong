@@ -27,16 +27,26 @@ unix{
 }
 
 SOURCES += \
+    src/gamebounds.cpp \
+    src/Gui/gameview.cpp \
     src/Gui/settingsmenu.cpp \
     src/Gui/mainmenu.cpp \
     src/Gui/graphicInterface.cpp \
     src/main.cpp \
     src/Gui/view.cpp \
-    src/Gui/text.cpp
+    src/Gui/text.cpp \
+    src/ball.cpp \
+    src/player.cpp \
+    src/racket.cpp
 
 HEADERS += \
+    inc/gamebounds.h \
+    inc/Gui/gameview.h \
     inc/Gui/graphicInterface.h \
     inc/Gui/view.h \
     inc/Gui/mainmenu.h \
     inc/Gui/text.h \
-    inc/Gui/settingsmenu.h
+    inc/Gui/settingsmenu.h \
+    inc/ball.h \
+    inc/player.h \
+    inc/racket.h
