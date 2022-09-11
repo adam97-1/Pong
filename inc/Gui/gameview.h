@@ -4,11 +4,13 @@
 #include <Gui/view.h>
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "ball.h"
+#include "rectangleobject.h"
 #include "gamebounds.h"
+#include "player.h"
+
 
 /*!
- * \brief The GameView class inherits from View.
+ * \brief The GameView class inherits from View and SettingsEventListeners.
  * This class contains all elements for display on game view.
  */
 class GameView : public View
@@ -52,24 +54,31 @@ protected:
 private:
 
     /*!
-     * \brief updateBounds update bounds of game.
-     */
-    void updateBounds();
-
-    /*!
      * \brief updateBall updates ball.
      */
     void updateBall();
+
+    /*!
+     * \brief updatePlayers update players.
+     */
+    void updatePlayers();
 
     /*!
      * \brief detectCollision detect all collision in game.
      */
     void detectCollision();
 
-    GameBounds m_boundsGame;      //! Bounds of game.
-    Ball m_ball;
-    sf::Clock m_clock;
-    sf::Time m_deltaTime;
+    /*!
+     * \brief onSettingsChangeResolution its handle change resolution.
+     * \param videoMode is actual resolution.
+     */
+    void onSettingsChangeResolution(sf::VideoMode videoMode);
+
+    GameBounds m_boundsGame;            //! Bounds of game.
+    std::vector<Player> m_players;      //! Players
+    RectangleObject m_ball;             //! Ball
+    sf::Clock m_clock;                  //! Clock
+    sf::Time m_deltaTime;               //! DeltaTime
 };
 
 #endif // GAMEVIEW_H

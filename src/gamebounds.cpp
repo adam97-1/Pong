@@ -36,9 +36,8 @@ void GameBounds::setOrigin()
     m_boundsGame.at(Bounds::Left).setOrigin(tempBounds.left, tempBounds.top);
 }
 
-void GameBounds::setPosition()
+void GameBounds::setPosition(sf::VideoMode windowSize)
 {
-    sf::VideoMode windowSize = sf::VideoMode::getDesktopMode();
 
     // Sets positions of bounds.
     m_boundsGame.at(Bounds::Bottom).setPosition(0,windowSize.height);
@@ -47,17 +46,14 @@ void GameBounds::setPosition()
     m_boundsGame.at(Bounds::Left).setPosition(0, 0);
 }
 
-void GameBounds::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void GameBounds::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     for(const auto & bound : m_boundsGame)
         target.draw(bound);
 }
 
-void GameBounds::setSize()
+void GameBounds::setSize(sf::VideoMode windowSize)
 {
-    sf::VideoMode windowSize = sf::VideoMode::getDesktopMode();                                     // Gets window resolution.
-
-//    std::cout << "windowSize.width: " <<windowSize.width << "  windowSize.height:" << windowSize.height <<std::endl;
     // Sets size of bounds.
     m_boundsGame.at(Bounds::Bottom).setSize(sf::Vector2f(windowSize.width, windowSize.height/50));
     m_boundsGame.at(Bounds::Top).setSize(sf::Vector2f(windowSize.width, windowSize.height/50));

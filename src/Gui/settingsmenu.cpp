@@ -1,27 +1,29 @@
 #include "Gui/settingsmenu.h"
 #include <iostream>
+#include <assert.h>
+
 
 SettingsMenu::SettingsMenu(sf::RenderWindow & window) : View{window}
 {
     constexpr int quantityMenuOptions = 4;              // Quantity menu options for display on this view.
 
     // Clear vector of the text, create new text and add this text into the vector.
+    Text *tempText_ptr = NULL;
     m_menuOptions.clear();
     for(int i = 0; i < quantityMenuOptions; i++)
     {
-        Text *tempText_ptr = new Text;
+        tempText_ptr = new Text;
         m_menuOptions.push_back(*tempText_ptr);
 //        delete tempText_ptr;      // I don't know why this doesn't work.
     }
     this->setCountMenuOptions(quantityMenuOptions);             // Sets quantity menu options for display on this view.
     m_availabeResolution = sf::VideoMode::getFullscreenModes();
-    accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height
-                                        , m_availabeResolution.at(getSelectResolution()).bitsPerPixel), "Pong", sf::Style::Fullscreen);
-    setTextString();                                            // Sets strings for text in the view.
+    setTextString();
+    updateMenuTextLook();                                       // Sets strings for text in the view.
     setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);    // Sets default next view for display.
 }
 
-void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
     // Display all elements.
     target.draw(m_title);
@@ -102,11 +104,13 @@ void SettingsMenu::handleInputKeyboard()
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()-5);
+            setTextString();                                                // Update strings of all text in menu.
         }
         // Change resolution.
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()-1);
+            setTextString();                                                // Update strings of all text in menu.
         }
     }
     if(holdKay(sf::Keyboard::Key::Right, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::A, sf::milliseconds(200)))
@@ -115,11 +119,15 @@ void SettingsMenu::handleInputKeyboard()
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
             setVloumeAudio(getVloumeAudio()+5);
+            setTextString();                                                // Update strings of all text in menu.
+
         }
         // Change resolution.
         if(getSelectMenuOptions() == SettingsMenuOptions::RESOLUTION)
         {
             setSelectResolution(getSelectResolution()+1);
+            setTextString();                                                // Update strings of all text in menu.
+
         }
     }
 
@@ -130,8 +138,7 @@ void SettingsMenu::handleInputKeyboard()
         case SettingsMenuOptions::AUDIO:
             break;
         case SettingsMenuOptions::APPLY:
-            accessWindow().create(sf::VideoMode(m_availabeResolution.at(getSelectResolution()).width, m_availabeResolution.at(getSelectResolution()).height
-                                  , m_availabeResolution.at(getSelectResolution()).bitsPerPixel), "Pong", sf::Style::Fullscreen);
+            _emit(onSettingsChangeResolution(m_availabeResolution.at(getSelectResolution())));
             break;
         case SettingsMenuOptions::RBACK:
             setDisplayNextView(SettingsMenu::GraphicView::MENU);
@@ -148,10 +155,27 @@ SettingsMenu::GraphicView SettingsMenu::updateView()
 {
     setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);        // Reset next view for display.
     handleInputKeyboard();                                          // Handling all inputs.
-    setMenuTextPosition();                                          // Update positions of all text in menu.
-    setTextString();                                                // Update strings of all text in menu.
-    updateMenuTextLook();                                           // Update look of all text in menu.
     accessWindow().draw(*this);                                     // Draw all element witch this view on window.
     return getDisplayNextView();                                    // return next view for display.
 }
 
+void SettingsMenu::addEventListener(SettingsEventListeners * listener){
+    assert(listener);
+    assert(std::find(m_listeners.begin(), m_listeners.end(), listener) == m_listeners.end());
+
+    m_listeners.push_back(listener);
+}
+
+void SettingsMenu::removeEventListener(SettingsEventListeners * listener){
+    assert(listener);
+    std::vector<SettingsEventListeners*>::iterator it = std::find(m_listeners.begin(), m_listeners.end(), listener);
+
+    if (it == m_listeners.end()) return;
+    m_listeners.erase(it);
+}
+
+void SettingsMenu::sendAllSiganl()
+{
+    _emit(onSettingsChangeAudio(getVloumeAudio()));
+    _emit(onSettingsChangeResolution(m_availabeResolution.at(getSelectResolution())));
+}

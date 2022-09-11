@@ -2,15 +2,18 @@
 #define VIEW_H
 #include <SFML/Graphics.hpp>
 #include "Gui/text.h"
+#include "settingseventlisteners.h"
+
+
 /*!
  * \brief The View class inherit from <a href="https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Drawable.php">sf::Drawable</a>.
  * It is the base for others classes to display selected view of game.
  */
-class View : public sf::Drawable
+class View : public sf::Drawable, public SettingsEventListeners
 {
 public:
     /*!
-     * \brief The GraphicView enum
+     * \brief The GraphicView enum available view.
      */
     enum GraphicView
     {
@@ -119,6 +122,12 @@ protected:
 
 
 protected:
+    /*!
+     * \brief onSettingsChangeResolution its handle change resolution.
+     * \param videoMode is actual resolution.
+     */
+    void onSettingsChangeResolution(sf::VideoMode videoMode);
+
     int m_countMenuOptions {0};                         //! Quantity of options in menu.
     Text m_title;                                       //! Object display title of view.
     std::vector<Text> m_menuOptions;                    //! Object display all options in menu.

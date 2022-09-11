@@ -2,7 +2,11 @@
 
 GraphicInteface::GraphicInteface()
 {
-    m_window.setFramerateLimit(60);
+    m_settingsMenu.addEventListener(this);
+    m_settingsMenu.addEventListener(&m_gameView);
+    m_settingsMenu.addEventListener(&m_mainMenu);
+    m_settingsMenu.addEventListener(&m_settingsMenu);
+    m_settingsMenu.sendAllSiganl();
 }
 
 sf::RenderWindow & GraphicInteface::accessWindow()
@@ -42,3 +46,10 @@ View::GraphicView GraphicInteface::getDisplayView() const
 {
     return m_displayView;
 }
+
+void GraphicInteface::onSettingsChangeResolution(sf::VideoMode videoMode)
+{
+    m_window.create(videoMode, "Pong", sf::Style::Default);
+    m_window.setFramerateLimit(60);
+}
+

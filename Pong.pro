@@ -35,9 +35,8 @@ SOURCES += \
     src/main.cpp \
     src/Gui/view.cpp \
     src/Gui/text.cpp \
-    src/ball.cpp \
     src/player.cpp \
-    src/racket.cpp
+    src/rectangleobject.cpp
 
 HEADERS += \
     inc/gamebounds.h \
@@ -47,6 +46,6 @@ HEADERS += \
     inc/Gui/mainmenu.h \
     inc/Gui/text.h \
     inc/Gui/settingsmenu.h \
-    inc/ball.h \
     inc/player.h \
-    inc/racket.h
+    inc/rectangleobject.h
+

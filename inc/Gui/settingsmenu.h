@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Gui/view.h"
 
+#define _emit(x) for (uint8_t i = 0; i < m_listeners.size(); i++) m_listeners.at(i)->x
 
 class SettingsMenu : public View
 {
@@ -19,6 +20,10 @@ public:
      * \return return enum for display next view.
      */
     GraphicView updateView();
+
+    void addEventListener(SettingsEventListeners * listener);
+    void removeEventListener(SettingsEventListeners * listener);
+    void sendAllSiganl();
 
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -79,6 +84,8 @@ private:
     int m_audio {100};                                  //! Volume of sounds.
     std::vector<sf::VideoMode> m_availabeResolution;    //! Stores all supported resolutions of monitor.
     int m_selectResolution {0};                         //! Select resolution.
+    std::vector<SettingsEventListeners*> m_listeners;   //! Vector of listeners.
 };
+
 
 #endif // SETTINGSMENU_H

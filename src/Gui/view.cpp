@@ -4,7 +4,6 @@
 
 View::View(sf::RenderWindow & window) : m_window(window)
 {
-
 }
 
 View::~View()
@@ -18,12 +17,12 @@ void View::handleInputKeyboard()
     if(holdKay(sf::Keyboard::Key::Up, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::W, sf::milliseconds(200)))
     {
         setSelectMenuOptions(getSelectMenuOptions() - 1 );
-//        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
+        updateMenuTextLook();                                   // Update look of all text in menu.
     }
     if(holdKay(sf::Keyboard::Key::Down, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::S, sf::milliseconds(200)))
     {
         setSelectMenuOptions(getSelectMenuOptions() + 1 );
-//        std::cout << "m_selectMenuOptions: " << getSelectMenuOptions() << std::endl;
+        updateMenuTextLook();                                   // Update look of all text in menu.
     }
 }
 
@@ -144,15 +143,23 @@ void View::setMenuTextPosition()
 
 void View::updateMenuTextLook()
 {
-    m_title.setCharacterSize(accessWindow().getSize().y/10);
     for(auto & text : m_menuOptions)
     {
         text.setFillColor(sf::Color::White);                        // Reset all text color.
-        text.setCharacterSize(accessWindow().getSize().y/20);       // Adapts size of text for actual resolution.
     }
 
     // Set red color for selected option in menu.
     m_menuOptions.at(getSelectMenuOptions()).setFillColor(sf::Color::Red);
+}
+
+void View::onSettingsChangeResolution(sf::VideoMode videoMode)
+{
+    m_title.setCharacterSize(videoMode.height/10);
+    for(auto & text : m_menuOptions)
+    {
+        text.setCharacterSize(videoMode.height/20);       // Adapts size of text for actual resolution.
+    }
+    setMenuTextPosition();
 }
 
 

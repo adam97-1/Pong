@@ -35,6 +35,9 @@ protected:
 
 private:
 
+    /*!
+     * \brief The MainMenuOptions enum of available view.
+     */
     enum MainMenuOptions
     {
         Player1 = 0,
@@ -47,6 +50,7 @@ private:
      * \brief setTextString sets all string for display.
      */
     void setTextString();
+
 
 
 

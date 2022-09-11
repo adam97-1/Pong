@@ -6,15 +6,17 @@ MainMenu::MainMenu(sf::RenderWindow & window) : View{window}
     constexpr int quantityMenuOptions = 5;              // Quantity menu options for display on this view.
 
     // Clear vector of the text, create new text and add this text into the vector.
+    Text *tempText_ptr = NULL;
     m_menuOptions.clear();
     for(int i = 0; i < quantityMenuOptions; i++)
     {
-        Text *tempText_ptr = new Text;
+        tempText_ptr = new Text;
         m_menuOptions.push_back(*tempText_ptr);
 //        delete tempText_ptr;      // I don't know why this doesn't work.
     }
     this->setCountMenuOptions(quantityMenuOptions);     // Sets quantity menu options for display on this view.
     setTextString();                                    // Sets strings for text in the view.
+    updateMenuTextLook();
     setDisplayNextView(MainMenu::GraphicView::MENU);    // Sets default next view for display.
 
 }
@@ -24,9 +26,9 @@ MainMenu::~MainMenu()
 }
 
 
-void MainMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void MainMenu::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
-    // Display all elements.
+     // Display all elements.
     target.draw(m_title);
     for(const auto & text : m_menuOptions)
         target.draw(text);
@@ -80,8 +82,6 @@ MainMenu::GraphicView MainMenu::updateView()
 {
     setDisplayNextView(MainMenu::GraphicView::MENU);        // Reset next view for display.
     handleInputKeyboard();                                  // Handling all inputs.
-    setMenuTextPosition();                                  // Update positions of all text in menu.
-    updateMenuTextLook();                                   // Update look of all text in menu.
     accessWindow().draw(*this);                             // Draw all elements from this view on the window.
     return getDisplayNextView();                            // return next view for display.
 }
