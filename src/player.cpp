@@ -20,5 +20,3 @@ void Player::addPoints(int value)
 {
     m_points += value;
 }
-
-

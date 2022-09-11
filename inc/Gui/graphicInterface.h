@@ -50,6 +50,7 @@ private:
     MainMenu m_mainMenu {m_window};                                 //! Main menu view.
     GameView m_gameView {m_window};                                 //! Game view.
     SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
+    GameView m_gameView {m_window};
     View::GraphicView m_displayView {View::GraphicView::MENU};      //! Display view.
 
     /*!

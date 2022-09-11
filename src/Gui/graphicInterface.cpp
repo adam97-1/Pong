@@ -7,7 +7,6 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(&m_mainMenu);
     m_settingsMenu.addEventListener(&m_settingsMenu);
     m_settingsMenu.sendAllSiganl();
-
 }
 
 sf::RenderWindow & GraphicInteface::accessWindow()

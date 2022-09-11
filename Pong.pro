@@ -46,6 +46,5 @@ HEADERS += \
     inc/Gui/mainmenu.h \
     inc/Gui/text.h \
     inc/Gui/settingsmenu.h \
+    inc/ball.h \
     inc/player.h \
-    inc/rectangleobject.h \
-    inc/settingseventlisteners.h

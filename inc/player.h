@@ -36,5 +36,4 @@
         int m_points {0};           //! Value of points.
     };
 
-
 #endif // PLAYER_H
