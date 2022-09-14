@@ -54,6 +54,11 @@ protected:
 private:
 
     /*!
+     * \brief updateScore updates score.
+     */
+    void updateScore();
+
+    /*!
      * \brief updateBall updates ball.
      */
     void updateBall();
@@ -79,6 +84,7 @@ private:
     RectangleObject m_ball;             //! Ball
     sf::Clock m_clock;                  //! Clock
     sf::Time m_deltaTime;               //! DeltaTime
+    Text m_score;                        //! Score
 };
 
 #endif // GAMEVIEW_H
