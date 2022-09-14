@@ -15,6 +15,7 @@ public:
      * It loads default text font.
      */
     Text();
+    bool setFont(const std::string &filename);
 
 private:
     sf::Font m_font;        //! Font of the text

@@ -15,6 +15,8 @@ GameView::GameView(sf::RenderWindow & window) : View{window}
         //        delete tempText_ptr;                              // I don't know why this doesn't work.
     }
     std::srand(std::time(NULL));                                    // Sets seed for rand.
+    m_score.setFont("./Fonts/bit5x3.ttf");
+    updateScore();
     setDisplayNextView(GameView::GraphicView::Player2);             // Sets default next view for display.
 }
 
@@ -70,7 +72,7 @@ void GameView::detectCollision()
                 if(m_ball.checkMinDistCollisionX(m_boundsGame.accessBounds().at(GameBounds::Bounds::Right)))
                     m_ball.functionCollisionX = [&]{
                         m_players.at(1).addPoints(1);
-                        std::cout << "Player 1: " << std::to_string(m_players.at(1).getPoints()) << std::endl;
+                        updateScore();
                         resetGame();
                     };
             }
@@ -79,7 +81,7 @@ void GameView::detectCollision()
                 if(m_ball.checkMinDistCollisionX(m_boundsGame.accessBounds().at(GameBounds::Bounds::Left)))
                     m_ball.functionCollisionX = [&]{
                         m_players.at(0).addPoints(1);
-                        std::cout << "Player 0: " << std::to_string(m_players.at(0).getPoints()) << std::endl;
+                        updateScore();
                         resetGame();
                     };
             }
@@ -176,6 +178,7 @@ void GameView::draw(sf::RenderTarget &target, sf::RenderStates) const
     target.draw(m_boundsGame);
     for(const auto & player : m_players)
         target.draw(player);
+    target.draw(m_score);
 }
 
 void GameView::handleInputKeyboard()
@@ -214,6 +217,11 @@ void GameView::handleInputKeyboard()
     }
 }
 
+void GameView::updateScore()
+{
+    m_score.setString(std::to_string(m_players.at(0).getPoints()) +  "  " + std::to_string(m_players.at(1).getPoints()));
+}
+
 void GameView::updateBall()
 {
     sf::Vector2f velocityBall = m_ball.getVelocity();
@@ -233,19 +241,25 @@ void GameView::onSettingsChangeResolution(sf::VideoMode videoMode)
 {
     // Change size of ball
     m_ball.setSize(sf::Vector2f(videoMode.height/60,videoMode.height/60));
-    sf::FloatRect temp = m_ball.getLocalBounds();
-    m_ball.setOrigin(temp.width/2, temp.height/2);
+    sf::FloatRect rect = m_ball.getLocalBounds();
+    m_ball.setOrigin(rect.width/2, rect.height/2);
 
     // Change size of players
     for(auto & player : m_players)
     {
         player.setSize(sf::Vector2f(videoMode.height/50, videoMode.height/8));
-        sf::FloatRect temp = player.getLocalBounds();
-        player.setOrigin(temp.width/2, temp.height/2);
+        rect = player.getLocalBounds();
+        player.setOrigin(rect.width/2, rect.height/2);
     }
 
     // Change size of boundsGame
     m_boundsGame.setSize(videoMode);
     m_boundsGame.setOrigin();
     m_boundsGame.setPosition(videoMode);
+
+    // Change size of score and position
+    m_score.setCharacterSize(videoMode.height/10);
+    rect = m_score.getLocalBounds();
+    m_score.setOrigin(rect.width/2, rect.height/2);
+    m_score.setPosition(videoMode.width/2, videoMode.height/4);
 }
