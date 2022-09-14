@@ -54,6 +54,16 @@ protected:
 private:
 
     /*!
+     * \brief resetGame reset all elements of this game view without score.
+     */
+    void serws();
+
+    /*!
+     * \brief timer
+     */
+    void timer();
+
+    /*!
      * \brief updateScore updates score.
      */
     void updateScore();
@@ -84,7 +94,10 @@ private:
     RectangleObject m_ball;             //! Ball
     sf::Clock m_clock;                  //! Clock
     sf::Time m_deltaTime;               //! DeltaTime
-    Text m_score;                        //! Score
+    Text m_score;                       //! Score
+    int m_startTime {4};
+    Text m_statrtTimeText;
+    //! Delay to ball start.
 };
 
 #endif // GAMEVIEW_H
