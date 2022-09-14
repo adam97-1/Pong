@@ -16,6 +16,8 @@ GameView::GameView(sf::RenderWindow & window) : View{window}
     }
     std::srand(std::time(NULL));                                    // Sets seed for rand.
     m_score.setFont("./Fonts/bit5x3.ttf");
+    m_statrtTimeText.setFont("./Fonts/bit5x3.ttf");
+    m_statrtTimeText.setString(std::to_string(m_startTime));
     updateScore();
     setDisplayNextView(GameView::GraphicView::Player2);             // Sets default next view for display.
 }
@@ -31,6 +33,7 @@ View::GraphicView GameView::updateView()
 
 void GameView::updateGame()
 {
+    timer();
     detectCollision();
     updateBall();
     updatePlayers();
@@ -73,7 +76,7 @@ void GameView::detectCollision()
                     m_ball.functionCollisionX = [&]{
                         m_players.at(1).addPoints(1);
                         updateScore();
-                        resetGame();
+                        serws();
                     };
             }
             if(m_ball.accesscollisionSensor().at(RectangleObject::Sensors::Left).getGlobalBounds().intersects(m_boundsGame.accessBounds().at(GameBounds::Bounds::Left).getGlobalBounds()))
@@ -82,7 +85,7 @@ void GameView::detectCollision()
                     m_ball.functionCollisionX = [&]{
                         m_players.at(0).addPoints(1);
                         updateScore();
-                        resetGame();
+                        serws();
                     };
             }
 
@@ -159,17 +162,19 @@ void GameView::resetGame()
 {
     sf::Vector2u windowSize = accessWindow().getSize();
 
-    sf::Vector2f startVelocity;
-    startVelocity.x = (std::rand()%2) ? static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2);
-    startVelocity.y = (std::rand()%2) ? static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2);
+    m_startTime = 4;
+    m_statrtTimeText.setString(std::to_string(m_startTime));
 
     m_ball.setPosition(windowSize.x/2, windowSize.y/2);
-    m_ball.setVelocity(startVelocity);
+    m_ball.setVelocity(0,0);
 
     m_players.at(0).setPosition(windowSize.y/20, windowSize.y/2);
     m_players.at(1).setPosition(windowSize.x - windowSize.y/20, windowSize.y/2);
     m_players.at(0).setVelocity(sf::Vector2f(0,0));
     m_players.at(1).setVelocity(sf::Vector2f(0,0));
+    m_players.at(0).setPoints(0);
+    m_players.at(1).setPoints(0);
+    updateScore();
 }
 
 void GameView::draw(sf::RenderTarget &target, sf::RenderStates) const
@@ -179,6 +184,8 @@ void GameView::draw(sf::RenderTarget &target, sf::RenderStates) const
     for(const auto & player : m_players)
         target.draw(player);
     target.draw(m_score);
+    if(m_startTime > -1)
+        target.draw(m_statrtTimeText);
 }
 
 void GameView::handleInputKeyboard()
@@ -213,7 +220,48 @@ void GameView::handleInputKeyboard()
     }
     if(pressedKey(sf::Keyboard::Key::Escape))
     {
+        resetGame();
         setDisplayNextView(GraphicView::MENU);
+    }
+}
+
+void GameView::serws()
+{
+    sf::Vector2u windowSize = accessWindow().getSize();
+
+    m_startTime = 4;
+    m_statrtTimeText.setString(std::to_string(m_startTime));
+
+    m_ball.setPosition(windowSize.x/2, windowSize.y/2);
+    m_ball.setVelocity(0,0);
+
+    m_players.at(0).setPosition(windowSize.y/20, windowSize.y/2);
+    m_players.at(1).setPosition(windowSize.x - windowSize.y/20, windowSize.y/2);
+    m_players.at(0).setVelocity(sf::Vector2f(0,0));
+    m_players.at(1).setVelocity(sf::Vector2f(0,0));
+}
+
+void GameView::timer()
+{
+    static sf::Clock clock;
+    static sf::Time time;
+    time = clock.getElapsedTime();
+    if(time.asSeconds() >= 1)
+    {
+        if(m_startTime > -1)
+                {
+            m_startTime--;
+            m_statrtTimeText.setString(std::to_string(m_startTime));
+        }
+        if(m_startTime == -1)
+        {
+            sf::Vector2f startVelocity;
+            m_startTime--;
+            startVelocity.x = (std::rand()%2) ? static_cast<int>(accessWindow().getSize().y)/2 : -(static_cast<int>(accessWindow().getSize().y)/2);
+            startVelocity.y = (std::rand()%2) ? static_cast<int>(accessWindow().getSize().y)/2+std::rand() % static_cast<int>(accessWindow().getSize().y)/2 : -(static_cast<int>(accessWindow().getSize().y)/2+std::rand() % static_cast<int>(accessWindow().getSize().y)/2);
+            m_ball.setVelocity(startVelocity);
+        }
+        clock.restart();
     }
 }
 
@@ -257,9 +305,15 @@ void GameView::onSettingsChangeResolution(sf::VideoMode videoMode)
     m_boundsGame.setOrigin();
     m_boundsGame.setPosition(videoMode);
 
-    // Change size of score and position
+    // Change size and position of score
     m_score.setCharacterSize(videoMode.height/10);
     rect = m_score.getLocalBounds();
     m_score.setOrigin(rect.width/2, rect.height/2);
-    m_score.setPosition(videoMode.width/2, videoMode.height/4);
+    m_score.setPosition(videoMode.width/2, videoMode.height/5);
+
+    // Change size and position of delayTime
+    m_statrtTimeText.setCharacterSize(videoMode.height/10);
+    rect = m_statrtTimeText.getLocalBounds();
+    m_statrtTimeText.setOrigin(rect.width/2, rect.height/2);
+    m_statrtTimeText.setPosition(videoMode.width/2, videoMode.height/3);
 }
