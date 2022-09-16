@@ -34,7 +34,7 @@ void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates) const
 void SettingsMenu::setTextString()
 {
     m_title.setString("Settings");
-    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio           " + std::to_string(getVloumeAudio()) +'%');
+    m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio           " + std::to_string(getVolumeAudio()) +'%');
     m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution    " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
                                     + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
                                     + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
@@ -43,7 +43,7 @@ void SettingsMenu::setTextString()
 
 }
 
-void SettingsMenu::setVloumeAudio(int volume)
+void SettingsMenu::setVolumeAudio(int volume)
 {
     if(volume > 100)
         m_audio = 100;
@@ -53,7 +53,7 @@ void SettingsMenu::setVloumeAudio(int volume)
         m_audio = volume;
 }
 
-int SettingsMenu::getVloumeAudio()
+int SettingsMenu::getVolumeAudio()
 {
     return m_audio;
 }
@@ -103,7 +103,7 @@ void SettingsMenu::handleInputKeyboard()
         // Change volume of audio
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
-            setVloumeAudio(getVloumeAudio()-5);
+            setVolumeAudio(getVolumeAudio()-5);
             setTextString();                                                // Update strings of all text in menu.
         }
         // Change resolution.
@@ -115,10 +115,12 @@ void SettingsMenu::handleInputKeyboard()
     }
     if(holdKay(sf::Keyboard::Key::Right, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::A, sf::milliseconds(200)))
     {
+        m_audioSelectOption.play();
+
         // Change volume of audio
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {
-            setVloumeAudio(getVloumeAudio()+5);
+            setVolumeAudio(getVolumeAudio()+5);
             setTextString();                                                // Update strings of all text in menu.
 
         }
@@ -134,11 +136,13 @@ void SettingsMenu::handleInputKeyboard()
         // If pressed Enter. Change view on next view.
     if(pressedKey(sf::Keyboard::Enter))
     {
+        m_audioSelectOption.play();
         switch (getSelectMenuOptions()) {
         case SettingsMenuOptions::AUDIO:
             break;
         case SettingsMenuOptions::APPLY:
             _emit(onSettingsChangeResolution(m_availabeResolution.at(getSelectResolution())));
+            _emit(onSettingsChangeAudio(getVolumeAudio()));
             break;
         case SettingsMenuOptions::RBACK:
             setDisplayNextView(SettingsMenu::GraphicView::MENU);
@@ -176,6 +180,6 @@ void SettingsMenu::removeEventListener(SettingsEventListeners * listener){
 
 void SettingsMenu::sendAllSiganl()
 {
-    _emit(onSettingsChangeAudio(getVloumeAudio()));
+    _emit(onSettingsChangeAudio(getVolumeAudio()));
     _emit(onSettingsChangeResolution(m_availabeResolution.at(getSelectResolution())));
 }

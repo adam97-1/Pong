@@ -52,15 +52,15 @@ private:
     void setTextString();
 
     /*!
-     * \brief setVloumeAudio sets volume of sounds.
+     * \brief setVolumeAudio sets volume of sounds.
      * \param volume is volume of sounds.
      */
-    void setVloumeAudio(int volume);
+    void setVolumeAudio(int volume);
     /*!
-     * \brief getVloumeAudio gets value of sound's volume.
+     * \brief getVolumeAudio gets value of sound's volume.
      * \return return volume of sounds.
      */
-    int getVloumeAudio();
+    int getVolumeAudio();
 
     /*!
      * \brief setSelectResolution sets index of available resolutions for display.

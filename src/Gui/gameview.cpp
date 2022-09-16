@@ -19,6 +19,8 @@ GameView::GameView(sf::RenderWindow & window) : View{window}
     m_statrtTimeText.setFont("./Fonts/bit5x3.ttf");
     m_statrtTimeText.setString(std::to_string(m_startTime));
     updateScore();
+    m_audioKnock.openFromFile("./Music/knock.waw");
+    m_audioLostPoint.openFromFile("./Music/lostPoint.waw");
     setDisplayNextView(GameView::GraphicView::Player2);             // Sets default next view for display.
 }
 
@@ -59,6 +61,8 @@ void GameView::detectCollision()
                     m_ball.functionCollisionY = [&] {
                       m_ball.setPosition(m_ball.getPosition().x, m_boundsGame.accessBounds().at(GameBounds::Bounds::Top).getPosition().y + m_boundsGame.accessBounds().at(GameBounds::Bounds::Top).getLocalBounds().height + m_ball.getSize().y/2);
                       m_ball.velocityInvertY();
+                      m_audioKnock.stop();
+                      m_audioKnock.play();
                     };
             }
             if(m_ball.accesscollisionSensor().at(RectangleObject::Sensors::Bottom).getGlobalBounds().intersects(m_boundsGame.accessBounds().at(GameBounds::Bounds::Bottom).getGlobalBounds()))
@@ -68,6 +72,8 @@ void GameView::detectCollision()
                     m_ball.functionCollisionY = [&] {
                         m_ball.setPosition(m_ball.getPosition().x, m_boundsGame.accessBounds().at(GameBounds::Bounds::Bottom).getPosition().y - m_boundsGame.accessBounds().at(GameBounds::Bounds::Bottom).getLocalBounds().height - m_ball.getSize().y/2);
                         m_ball.velocityInvertY();
+                        m_audioKnock.stop();
+                        m_audioKnock.play();
                     };
             }
             if(m_ball.accesscollisionSensor().at(RectangleObject::Sensors::Right).getGlobalBounds().intersects(m_boundsGame.accessBounds().at(GameBounds::Bounds::Right).getGlobalBounds()))
@@ -77,6 +83,8 @@ void GameView::detectCollision()
                         m_players.at(1).addPoints(1);
                         updateScore();
                         serws();
+                        m_audioLostPoint.stop();
+                        m_audioLostPoint.play();
                     };
             }
             if(m_ball.accesscollisionSensor().at(RectangleObject::Sensors::Left).getGlobalBounds().intersects(m_boundsGame.accessBounds().at(GameBounds::Bounds::Left).getGlobalBounds()))
@@ -86,6 +94,8 @@ void GameView::detectCollision()
                         m_players.at(0).addPoints(1);
                         updateScore();
                         serws();
+                        m_audioLostPoint.stop();
+                        m_audioLostPoint.play();
                     };
             }
 
@@ -117,6 +127,8 @@ void GameView::detectCollision()
                 if(m_ball.checkMinDistCollisionX(player))
                     m_ball.functionCollisionX = [&] {
                         m_ball.velocityInvertX();
+                        m_audioKnock.stop();
+                        m_audioKnock.play();
                         sf::Vector2f ballVelosity = m_ball.getVelocity();
                         sf::Vector2u windowSize = accessWindow().getSize();
                         m_ball.setVelocity(sf::Vector2f(ballVelosity.x*1.1, (ballVelosity.y > 0) ? static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2)));
@@ -128,6 +140,8 @@ void GameView::detectCollision()
                 if(m_ball.checkMinDistCollisionX(player))
                     m_ball.functionCollisionX = [&] {
                         m_ball.velocityInvertX();
+                        m_audioKnock.stop();
+                        m_audioKnock.play();
                         sf::Vector2f ballVelosity = m_ball.getVelocity();
                         sf::Vector2u windowSize = accessWindow().getSize();
                         m_ball.setVelocity(sf::Vector2f(ballVelosity.x*1.1, (ballVelosity.y > 0) ? static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2)));
@@ -139,6 +153,8 @@ void GameView::detectCollision()
                     m_ball.functionCollisionY =  [&] {
                                 m_ball.setPosition(m_ball.getPosition().x, player.getPosition().y - player.getLocalBounds().height/2 - m_ball.getSize().y/2);
                                 m_ball.velocityInvertY();
+                                m_audioKnock.stop();
+                                m_audioKnock.play();
                                 player.setVelocity(0,0);
                     };
             }
@@ -148,6 +164,8 @@ void GameView::detectCollision()
                     m_ball.functionCollisionY = [&] {
                         m_ball.setPosition(m_ball.getPosition().x, player.getPosition().y + player.getLocalBounds().height/2 + m_ball.getSize().y/2);
                         m_ball.velocityInvertY();
+                        m_audioKnock.stop();
+                        m_audioKnock.play();
                         player.setVelocity(0,0);
                       };
             }
@@ -220,6 +238,7 @@ void GameView::handleInputKeyboard()
     }
     if(pressedKey(sf::Keyboard::Key::Escape))
     {
+        m_audioSelectOption.play();
         resetGame();
         setDisplayNextView(GraphicView::MENU);
     }
@@ -246,7 +265,7 @@ void GameView::timer()
     static sf::Clock clock;
     static sf::Time time;
     time = clock.getElapsedTime();
-    if(time.asSeconds() >= 1)
+    if(time.asSeconds() > 1)
     {
         if(m_startTime > -1)
                 {
@@ -316,4 +335,11 @@ void GameView::onSettingsChangeResolution(sf::VideoMode videoMode)
     rect = m_statrtTimeText.getLocalBounds();
     m_statrtTimeText.setOrigin(rect.width/2, rect.height/2);
     m_statrtTimeText.setPosition(videoMode.width/2, videoMode.height/3);
+}
+
+void GameView::onSettingsChangeAudio(int volume)
+{
+    View::onSettingsChangeAudio(volume);
+    m_audioKnock.setVolume(volume);
+    m_audioLostPoint.setVolume(volume);
 }

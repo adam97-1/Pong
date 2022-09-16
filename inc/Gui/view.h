@@ -1,6 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Gui/text.h"
 #include "settingseventlisteners.h"
 
@@ -127,10 +128,13 @@ protected:
      * \param videoMode is actual resolution.
      */
     void onSettingsChangeResolution(sf::VideoMode videoMode);
+    void onSettingsChangeAudio(int volume);
 
     int m_countMenuOptions {0};                         //! Quantity of options in menu.
     Text m_title;                                       //! Object display title of view.
     std::vector<Text> m_menuOptions;                    //! Object display all options in menu.
+    sf::Music m_audioChangeOptions;
+    sf::Music m_audioSelectOption;
 
 private:
     int m_selectMenuOptions {0};                        //! Actual select option in display menu.

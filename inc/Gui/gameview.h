@@ -88,6 +88,7 @@ private:
      * \param videoMode is actual resolution.
      */
     void onSettingsChangeResolution(sf::VideoMode videoMode);
+    void onSettingsChangeAudio(int volume);
 
     GameBounds m_boundsGame;            //! Bounds of game.
     std::vector<Player> m_players;      //! Players
@@ -95,9 +96,10 @@ private:
     sf::Clock m_clock;                  //! Clock
     sf::Time m_deltaTime;               //! DeltaTime
     Text m_score;                       //! Score
-    int m_startTime {4};
-    Text m_statrtTimeText;
-    //! Delay to ball start.
+    int m_startTime {4};                //! Delay to ball start
+    Text m_statrtTimeText;              //! Text delay to ball start
+    sf::Music m_audioKnock;
+    sf::Music m_audioLostPoint;
 };
 
 #endif // GAMEVIEW_H
