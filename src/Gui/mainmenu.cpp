@@ -47,6 +47,7 @@ void MainMenu::handleInputKeyboard()
         // If pressed Enter. Change view for next view.
     if(pressedKey(sf::Keyboard::Enter))
     {
+        m_audioSelectOption.play();
         // Check selected options and change view for corresponding next view.
         switch (getSelectMenuOptions()) {
         case MainMenuOptions::Player1:

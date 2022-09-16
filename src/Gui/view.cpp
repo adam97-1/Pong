@@ -4,6 +4,8 @@
 
 View::View(sf::RenderWindow & window) : m_window(window)
 {
+    m_audioChangeOptions.openFromFile("./Music/changeOptions.waw");
+    m_audioSelectOption.openFromFile("./Music/select.waw");
 }
 
 View::~View()
@@ -13,6 +15,10 @@ View::~View()
 
 void View::handleInputKeyboard()
 {
+    // Reset audio
+    m_audioChangeOptions.stop();
+    m_audioSelectOption.stop();
+
     // Check for pressed keys and change selected option in menu accordingly.
     if(holdKay(sf::Keyboard::Key::Up, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::W, sf::milliseconds(200)))
     {
@@ -72,6 +78,7 @@ bool View::holdKay(const sf::Keyboard::Key key, sf::Time holdTime) const
 
 void View::setSelectMenuOptions(const int selectMenuOptions)
 {
+    m_audioChangeOptions.play();
     // This make loop on select option.
     if(selectMenuOptions > getCountMenuOptions()-1)
         m_selectMenuOptions = 0;
@@ -160,6 +167,12 @@ void View::onSettingsChangeResolution(sf::VideoMode videoMode)
         text.setCharacterSize(videoMode.height/20);       // Adapts size of text for actual resolution.
     }
     setMenuTextPosition();
+}
+
+void View::onSettingsChangeAudio(int volume)
+{
+    m_audioChangeOptions.setVolume(volume);
+    m_audioSelectOption.setVolume(volume);
 }
 
 
