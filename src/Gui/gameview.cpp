@@ -80,7 +80,7 @@ void GameView::detectCollision()
             {
                 if(m_ball.checkMinDistCollisionX(m_boundsGame.accessBounds().at(GameBounds::Bounds::Right)))
                     m_ball.functionCollisionX = [&]{
-                        m_players.at(1).addPoints(1);
+                        m_players.at(0).addPoints(1);
                         updateScore();
                         serws();
                         m_audioLostPoint.stop();
@@ -91,7 +91,7 @@ void GameView::detectCollision()
             {
                 if(m_ball.checkMinDistCollisionX(m_boundsGame.accessBounds().at(GameBounds::Bounds::Left)))
                     m_ball.functionCollisionX = [&]{
-                        m_players.at(0).addPoints(1);
+                        m_players.at(1).addPoints(1);
                         updateScore();
                         serws();
                         m_audioLostPoint.stop();
