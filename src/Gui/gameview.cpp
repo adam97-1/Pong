@@ -21,12 +21,12 @@ GameView::GameView(sf::RenderWindow & window) : View{window}
     updateScore();
     m_audioKnock.openFromFile("./Music/knock.waw");
     m_audioLostPoint.openFromFile("./Music/lostPoint.waw");
-    setDisplayNextView(GameView::GraphicView::Player2);             // Sets default next view for display.
+//    setDisplayNextView(GameView::GraphicView::Player2);             // Sets default next view for display.
 }
 
 View::GraphicView GameView::updateView()
 {
-    setDisplayNextView(GraphicView::Player2);
+    setDisplayNextView((getAiPlayer())? GraphicView::Player1 : GraphicView::Player2 );
     handleInputKeyboard();
     updateGame();
     accessWindow().draw(*this);
@@ -36,6 +36,7 @@ View::GraphicView GameView::updateView()
 void GameView::updateGame()
 {
     timer();
+    AiPlayer();
     detectCollision();
     updateBall();
     updatePlayers();
@@ -176,6 +177,17 @@ void GameView::detectCollision()
         m_ball.functionCollisionY();
 }
 
+void GameView::AiPlayer()
+{
+    if(getAiPlayer())
+    {
+        sf::Vector2u windowSize = accessWindow().getSize();
+        sf::Vector2f computerPosition = m_players.at(1).getPosition();
+        sf::Vector2f ballPosition = m_ball.getPosition();
+            m_players.at(1).setVelocity(0, (ballPosition.y - m_ball.getVelocity().y*m_deltaTime.asSeconds()-computerPosition.y)*15);
+    }
+}
+
 void GameView::resetGame()
 {
     sf::Vector2u windowSize = accessWindow().getSize();
@@ -236,6 +248,7 @@ void GameView::handleInputKeyboard()
     {
         m_players.at(1).setVelocity(sf::Vector2f(0, 0));
     }
+
     if(pressedKey(sf::Keyboard::Key::Escape))
     {
         m_audioSelectOption.play();
@@ -342,4 +355,14 @@ void GameView::onSettingsChangeAudio(int volume)
     View::onSettingsChangeAudio(volume);
     m_audioKnock.setVolume(volume);
     m_audioLostPoint.setVolume(volume);
+}
+
+void GameView::setAiPlayer(bool OnOff)
+{
+    m_AiPlayer = OnOff;
+}
+
+bool GameView::getAiPlayer()
+{
+    return m_AiPlayer;
 }
