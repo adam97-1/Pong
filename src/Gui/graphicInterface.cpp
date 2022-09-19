@@ -30,7 +30,13 @@ void GraphicInteface::updateGraphic()
         setDisplayView(m_settingsMenu.updateView());
         break;
     case View::GraphicView::Player2:
+        m_gameView.setAiPlayer(false);
         setDisplayView(m_gameView.updateView());
+        break;
+    case View::GraphicView::Player1:
+        m_gameView.setAiPlayer(true);
+        setDisplayView(m_gameView.updateView());
+        break;
     default:
         break;
     }

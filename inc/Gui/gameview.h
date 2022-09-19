@@ -43,6 +43,18 @@ public:
      */
     void resetGame();
 
+    /*!
+     * \brief setAiPlayer turns on or off AI computer player.
+     * \param OnOff
+     */
+    void setAiPlayer(bool OnOff);
+
+    /*!
+     * \brief getAiPlayer gets status of IA computer player.
+     * \return return true if IA computer player is  turn on.
+     */
+    bool getAiPlayer();
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
@@ -84,10 +96,20 @@ private:
     void detectCollision();
 
     /*!
+     * \brief AiPlayer calculate new position for computer player.
+     */
+    void AiPlayer();
+
+    /*!
      * \brief onSettingsChangeResolution its handle change resolution.
      * \param videoMode is actual resolution.
      */
     void onSettingsChangeResolution(sf::VideoMode videoMode);
+
+    /*!
+     * \brief onSettingsChangeAudio its handle change resolution.
+     * \param volume is value of volume audio.
+     */
     void onSettingsChangeAudio(int volume);
 
     GameBounds m_boundsGame;            //! Bounds of game.
@@ -100,6 +122,7 @@ private:
     Text m_statrtTimeText;              //! Text delay to ball start
     sf::Music m_audioKnock;
     sf::Music m_audioLostPoint;
+    bool m_AiPlayer;
 };
 
 #endif // GAMEVIEW_H

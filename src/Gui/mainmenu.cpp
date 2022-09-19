@@ -51,6 +51,7 @@ void MainMenu::handleInputKeyboard()
         // Check selected options and change view for corresponding next view.
         switch (getSelectMenuOptions()) {
         case MainMenuOptions::Player1:
+            setDisplayNextView(MainMenu::GraphicView::Player1);
             break;
         case MainMenuOptions::Player2:
             setDisplayNextView(MainMenu::GraphicView::Player2);

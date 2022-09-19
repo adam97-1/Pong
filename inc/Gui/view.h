@@ -19,8 +19,9 @@ public:
     enum GraphicView
     {
         MENU        =   0,
-        SETTINGS,
-        Player2
+        SETTINGS    =   1,
+        Player2     =   2,
+        Player1     =   3
     };
 
     /*!
@@ -128,6 +129,11 @@ protected:
      * \param videoMode is actual resolution.
      */
     void onSettingsChangeResolution(sf::VideoMode videoMode);
+
+    /*!
+     * \brief onSettingsChangeAudio its handle change resolution.
+     * \param volume is value of volume audio.
+     */
     void onSettingsChangeAudio(int volume);
 
     int m_countMenuOptions {0};                         //! Quantity of options in menu.
