@@ -6,6 +6,7 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(&m_gameView);
     m_settingsMenu.addEventListener(&m_mainMenu);
     m_settingsMenu.addEventListener(&m_settingsMenu);
+    m_settingsMenu.addEventListener(&m_player2Menu);
     m_settingsMenu.sendAllSiganl();
 }
 
@@ -22,19 +23,25 @@ void GraphicInteface::updateGraphic()
 
     // Check view for display and display it.
     switch (getDisplayView()) {
-    case View::GraphicView::MENU:
+    case View::GraphicView::MainMenu:
         setDisplayView(m_mainMenu.updateView());
         m_gameView.resetGame();
         break;
-    case View::GraphicView::SETTINGS:
+    case View::GraphicView::SettingsMenu:
         setDisplayView(m_settingsMenu.updateView());
         break;
-    case View::GraphicView::Player2:
+    case View::GraphicView::Player2Menu:
         m_gameView.setAiPlayer(false);
+        setDisplayView(m_player2Menu.updateView());
+        break;
+    case View::GraphicView::GamePlayer1:
+        m_gameView.setAiPlayer(true);
+        m_gameView.setDisplayNextView(GameView::GraphicView::GamePlayer1);
         setDisplayView(m_gameView.updateView());
         break;
-    case View::GraphicView::Player1:
-        m_gameView.setAiPlayer(true);
+    case View::GraphicView::GameOffline:
+        m_gameView.setAiPlayer(false);
+        m_gameView.setDisplayNextView(GameView::GraphicView::GameOffline);
         setDisplayView(m_gameView.updateView());
         break;
     default:

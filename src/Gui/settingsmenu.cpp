@@ -20,7 +20,7 @@ SettingsMenu::SettingsMenu(sf::RenderWindow & window) : View{window}
     m_availabeResolution = sf::VideoMode::getFullscreenModes();
     setTextString();
     updateMenuTextLook();                                       // Sets strings for text in the view.
-    setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);    // Sets default next view for display.
+    setDisplayNextView(SettingsMenu::GraphicView::SettingsMenu);    // Sets default next view for display.
 }
 
 void SettingsMenu::draw(sf::RenderTarget &target, sf::RenderStates) const
@@ -145,7 +145,7 @@ void SettingsMenu::handleInputKeyboard()
             _emit(onSettingsChangeAudio(getVolumeAudio()));
             break;
         case SettingsMenuOptions::RBACK:
-            setDisplayNextView(SettingsMenu::GraphicView::MENU);
+            setDisplayNextView(SettingsMenu::GraphicView::MainMenu);
             setSelectResolution(getActualResorution());
             break;
         default:
@@ -157,7 +157,7 @@ void SettingsMenu::handleInputKeyboard()
 
 SettingsMenu::GraphicView SettingsMenu::updateView()
 {
-    setDisplayNextView(SettingsMenu::GraphicView::SETTINGS);        // Reset next view for display.
+    setDisplayNextView(SettingsMenu::GraphicView::SettingsMenu);        // Reset next view for display.
     handleInputKeyboard();                                          // Handling all inputs.
     accessWindow().draw(*this);                                     // Draw all element witch this view on window.
     return getDisplayNextView();                                    // return next view for display.

@@ -17,7 +17,7 @@ MainMenu::MainMenu(sf::RenderWindow & window) : View{window}
     this->setCountMenuOptions(quantityMenuOptions);     // Sets quantity menu options for display on this view.
     setTextString();                                    // Sets strings for text in the view.
     updateMenuTextLook();
-    setDisplayNextView(MainMenu::GraphicView::MENU);    // Sets default next view for display.
+    setDisplayNextView(MainMenu::GraphicView::MainMenu);    // Sets default next view for display.
 
 }
 
@@ -51,13 +51,13 @@ void MainMenu::handleInputKeyboard()
         // Check selected options and change view for corresponding next view.
         switch (getSelectMenuOptions()) {
         case MainMenuOptions::Player1:
-            setDisplayNextView(MainMenu::GraphicView::Player1);
+            setDisplayNextView(MainMenu::GraphicView::GamePlayer1);
             break;
         case MainMenuOptions::Player2:
-            setDisplayNextView(MainMenu::GraphicView::Player2);
+            setDisplayNextView(MainMenu::GraphicView::Player2Menu);
             break;
         case MainMenuOptions::Settings:
-            setDisplayNextView(MainMenu::GraphicView::SETTINGS);
+            setDisplayNextView(MainMenu::GraphicView::SettingsMenu);
             break;
         case MainMenuOptions::GameInfo:
             break;
@@ -82,7 +82,7 @@ void MainMenu::setTextString()
 
 MainMenu::GraphicView MainMenu::updateView()
 {
-    setDisplayNextView(MainMenu::GraphicView::MENU);        // Reset next view for display.
+    setDisplayNextView(MainMenu::GraphicView::MainMenu);        // Reset next view for display.
     handleInputKeyboard();                                  // Handling all inputs.
     accessWindow().draw(*this);                             // Draw all elements from this view on the window.
     return getDisplayNextView();                            // return next view for display.
