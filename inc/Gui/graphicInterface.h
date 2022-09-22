@@ -8,6 +8,7 @@
 #include "Gui/gameview.h"
 #include "Gui/player2menu.h"
 #include "Gui/lanmenu.h"
+#include "Gui/onlinemenu.h"
 
 
 /*!
@@ -53,6 +54,7 @@ private:
     SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
     Player2Menu m_player2Menu   {m_window};
     LanMenu m_lanMenu {m_window};
+    OnlineMenu m_onlineMenu {m_window};
     View::GraphicView m_displayView {View::GraphicView::MainMenu};      //! Display view.
 
     /*!

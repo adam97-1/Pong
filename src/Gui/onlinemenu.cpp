@@ -1,8 +1,8 @@
-#include "Gui/player2menu.h"
+#include "Gui/onlinemenu.h"
 
-Player2Menu::Player2Menu(sf::RenderWindow & window) : View{window}
+OnlineMenu::OnlineMenu(sf::RenderWindow & window) : View{window}
 {
-    constexpr int quantityMenuOptions = 4;              // Quantity menu options for display on this view.
+    constexpr int quantityMenuOptions = 2;              // Quantity menu options for display on this view.
 
     // Clear vector of the text, create new text and add this text into the vector.
     Text *tempText_ptr = NULL;
@@ -16,32 +16,31 @@ Player2Menu::Player2Menu(sf::RenderWindow & window) : View{window}
     this->setCountMenuOptions(quantityMenuOptions);     // Sets quantity menu options for display on this view.
     setTextString();                                    // Sets strings for text in the view.
     updateMenuTextLook();
-    setDisplayNextView(Player2Menu::GraphicView::Player2Menu);    // Sets default next view for display.
+    setDisplayNextView(OnlineMenu::GraphicView::OnlineMenu);    // Sets default next view for display.
 }
 
-Player2Menu::~Player2Menu()
+OnlineMenu::~OnlineMenu()
 {
 
 }
 
-View::GraphicView Player2Menu::updateView()
+OnlineMenu::GraphicView OnlineMenu::updateView()
 {
-    setDisplayNextView(Player2Menu::GraphicView::Player2Menu);        // Reset next view for display.
+    setDisplayNextView(OnlineMenu::GraphicView::OnlineMenu);        // Reset next view for display.
     handleInputKeyboard();                                  // Handling all inputs.
     accessWindow().draw(*this);                             // Draw all elements from this view on the window.
     return getDisplayNextView();                            // return next view for display.
 }
 
-void Player2Menu::setTextString()
+void OnlineMenu::draw(sf::RenderTarget &target, sf::RenderStates) const
 {
-    m_title.setString("Player 2");
-    m_menuOptions.at(MainMenuOptions::Offline).setString("1.   Offline");
-    m_menuOptions.at(MainMenuOptions::Online).setString("2.   Online");
-    m_menuOptions.at(MainMenuOptions::LAN).setString("3.   LAN");
-    m_menuOptions.at(MainMenuOptions::Back).setString("4.   Back");
+     // Display all elements.
+    target.draw(m_title);
+    for(const auto & text : m_menuOptions)
+        target.draw(text);
 }
 
-void Player2Menu::handleInputKeyboard()
+void OnlineMenu::handleInputKeyboard()
 {
     // If window is active. It check inputs.
     if(!accessWindow().hasFocus())
@@ -57,29 +56,21 @@ void Player2Menu::handleInputKeyboard()
         m_audioSelectOption.play();
         // Check selected options and change view for corresponding next view.
         switch (getSelectMenuOptions()) {
-        case MainMenuOptions::Offline:
-            setDisplayNextView(Player2Menu::GraphicView::GameOffline);
+        case MainMenuOptions::CreateHost:
+            setDisplayNextView(OnlineMenu::GraphicView::CreateHost);
             break;
-        case MainMenuOptions::Online:
-            setDisplayNextView(Player2Menu::GraphicView::OnlineMenu);
-            break;
-        case MainMenuOptions::LAN:
-            setDisplayNextView(Player2Menu::GraphicView::LanMenu);
-            break;
-        case MainMenuOptions::Back:
-            setDisplayNextView(Player2Menu::GraphicView::MainMenu);
-            break;
-        default:
+        case MainMenuOptions::ConnectToHost:
+            setDisplayNextView(OnlineMenu::GraphicView::ConnectToHost);
             break;
         }
     }
     //------------------------------------------------------------------------
 }
 
-void Player2Menu::draw(sf::RenderTarget &target, sf::RenderStates) const
+void OnlineMenu::setTextString()
 {
-     // Display all elements.
-    target.draw(m_title);
-    for(const auto & text : m_menuOptions)
-        target.draw(text);
+    m_title.setString("Online");
+    m_menuOptions.at(MainMenuOptions::CreateHost).setString("1.   Create host");
+    m_menuOptions.at(MainMenuOptions::ConnectToHost).setString("2.   Connect to host");
+
 }
