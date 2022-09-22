@@ -31,7 +31,8 @@ private:
     enum MainMenuOptions
     {
         CreateHost = 0,
-        ConnectToHost
+        ConnectToHost,
+        Back
     };
     /*!
      * \brief setTextString sets all string for display.
