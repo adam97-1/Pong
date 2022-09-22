@@ -18,10 +18,12 @@ public:
      */
     enum GraphicView
     {
-        MENU        =   0,
-        SETTINGS    =   1,
-        Player2     =   2,
-        Player1     =   3
+        MainMenu        =   0,
+        SettingsMenu    =   1,
+        Player2Menu     =   2,
+        GamePlayer1     =   3,
+        GameOffline     =   4,
+        LanMenu         =   6
     };
 
     /*!
@@ -145,7 +147,7 @@ protected:
 private:
     int m_selectMenuOptions {0};                        //! Actual select option in display menu.
     sf::RenderWindow &m_window;                         //! Reference in graphic window.
-    GraphicView m_displayNextView {GraphicView::MENU};  //! Select next view for display on window.
+    GraphicView m_displayNextView {GraphicView::MainMenu};  //! Select next view for display on window.
 };
 
 #endif // VIEW_H

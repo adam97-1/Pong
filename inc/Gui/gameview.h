@@ -55,6 +55,12 @@ public:
      */
     bool getAiPlayer();
 
+    /*!
+     * \brief setDisplayNextView sets a View for display on window in the next time.
+     * \param view enum of GraphicView
+     */
+    void setDisplayNextView(const GraphicView view);
+
 protected:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

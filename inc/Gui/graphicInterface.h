@@ -6,6 +6,7 @@
 #include "Gui/settingsmenu.h"
 #include "settingseventlisteners.h"
 #include "Gui/gameview.h"
+#include "Gui/player2menu.h"
 
 
 
@@ -50,7 +51,8 @@ private:
     MainMenu m_mainMenu {m_window};                                 //! Main menu view.
     GameView m_gameView {m_window};                                 //! Game view.
     SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
-    View::GraphicView m_displayView {View::GraphicView::MENU};      //! Display view.
+    Player2Menu m_player2Menu   {m_window};
+    View::GraphicView m_displayView {View::GraphicView::MainMenu};      //! Display view.
 
     /*!
      * \brief onSettingsChangeResolution its handle change resolution.

@@ -26,7 +26,6 @@ GameView::GameView(sf::RenderWindow & window) : View{window}
 
 View::GraphicView GameView::updateView()
 {
-    setDisplayNextView((getAiPlayer())? GraphicView::Player1 : GraphicView::Player2 );
     handleInputKeyboard();
     updateGame();
     accessWindow().draw(*this);
@@ -181,10 +180,9 @@ void GameView::AiPlayer()
 {
     if(getAiPlayer())
     {
-        sf::Vector2u windowSize = accessWindow().getSize();
-        sf::Vector2f computerPosition = m_players.at(1).getPosition();
+        sf::Vector2f computerPosition = m_players.at(0).getPosition();
         sf::Vector2f ballPosition = m_ball.getPosition();
-            m_players.at(1).setVelocity(0, (ballPosition.y - m_ball.getVelocity().y*m_deltaTime.asSeconds()-computerPosition.y)*15);
+            m_players.at(0).setVelocity(0, (ballPosition.y - m_ball.getVelocity().y*m_deltaTime.asSeconds()-computerPosition.y)*15);
     }
 }
 
@@ -253,7 +251,7 @@ void GameView::handleInputKeyboard()
     {
         m_audioSelectOption.play();
         resetGame();
-        setDisplayNextView(GraphicView::MENU);
+        setDisplayNextView(GraphicView::MainMenu);
     }
 }
 
@@ -365,4 +363,9 @@ void GameView::setAiPlayer(bool OnOff)
 bool GameView::getAiPlayer()
 {
     return m_AiPlayer;
+}
+
+void GameView::setDisplayNextView(const GraphicView view)
+{
+    View::setDisplayNextView(view);
 }

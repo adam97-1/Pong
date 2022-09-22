@@ -35,6 +35,7 @@ SOURCES += \
     src/main.cpp \
     src/Gui/view.cpp \
     src/Gui/text.cpp \
+    src/Gui/player2menu.cpp \
     src/player.cpp \
     src/rectangleobject.cpp
 
@@ -46,6 +47,7 @@ HEADERS += \
     inc/Gui/mainmenu.h \
     inc/Gui/text.h \
     inc/Gui/settingsmenu.h \
+    inc/Gui/player2menu.h \
     inc/player.h \
     inc/rectangleobject.h
 
