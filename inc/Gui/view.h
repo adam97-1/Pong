@@ -25,7 +25,8 @@ public:
         GameOffline     =   4,
         LanMenu         =   6,
         CreateHost      =   7,
-        ConnectToHost   =   8
+        ConnectToHost   =   8,
+        OnlineMenu      =   9
     };
 
     /*!

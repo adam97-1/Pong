@@ -8,6 +8,7 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(&m_settingsMenu);
     m_settingsMenu.addEventListener(&m_player2Menu);
     m_settingsMenu.addEventListener(&m_lanMenu);
+    m_settingsMenu.addEventListener(&m_onlineMenu);
     m_settingsMenu.sendAllSiganl();
 }
 
@@ -52,6 +53,9 @@ void GraphicInteface::updateGraphic()
         break;
     case View::GraphicView::ConnectToHost:
         setDisplayView(m_mainMenu.updateView());
+        break;
+    case View::GraphicView::OnlineMenu:
+        setDisplayView(m_onlineMenu.updateView());
         break;
     default:
         break;
