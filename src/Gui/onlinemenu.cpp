@@ -2,7 +2,7 @@
 
 OnlineMenu::OnlineMenu(sf::RenderWindow & window) : View{window}
 {
-    constexpr int quantityMenuOptions = 2;              // Quantity menu options for display on this view.
+    constexpr int quantityMenuOptions = 3;              // Quantity menu options for display on this view.
 
     // Clear vector of the text, create new text and add this text into the vector.
     Text *tempText_ptr = NULL;
@@ -62,6 +62,9 @@ void OnlineMenu::handleInputKeyboard()
         case MainMenuOptions::ConnectToHost:
             setDisplayNextView(OnlineMenu::GraphicView::ConnectToHost);
             break;
+        case MainMenuOptions::Back:
+            setDisplayNextView(OnlineMenu::GraphicView::Player2Menu);
+            break;
         }
     }
     //------------------------------------------------------------------------
@@ -72,5 +75,6 @@ void OnlineMenu::setTextString()
     m_title.setString("Online");
     m_menuOptions.at(MainMenuOptions::CreateHost).setString("1.   Create host");
     m_menuOptions.at(MainMenuOptions::ConnectToHost).setString("2.   Connect to host");
+    m_menuOptions.at(MainMenuOptions::Back).setString("3.   Back");
 
 }
