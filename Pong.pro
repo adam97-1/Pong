@@ -27,6 +27,7 @@ unix{
 }
 
 SOURCES += \
+    src/Gui/lanmenu.cpp \
     src/gamebounds.cpp \
     src/Gui/gameview.cpp \
     src/Gui/settingsmenu.cpp \
@@ -40,6 +41,7 @@ SOURCES += \
     src/rectangleobject.cpp
 
 HEADERS += \
+    inc/Gui/lanmenu.h \
     inc/gamebounds.h \
     inc/Gui/gameview.h \
     inc/Gui/graphicInterface.h \

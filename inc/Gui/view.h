@@ -23,7 +23,9 @@ public:
         Player2Menu     =   2,
         GamePlayer1     =   3,
         GameOffline     =   4,
-        LanMenu         =   6
+        LanMenu         =   6,
+        CreateHost      =   7,
+        ConnectToHost   =   8
     };
 
     /*!

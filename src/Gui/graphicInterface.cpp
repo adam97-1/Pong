@@ -7,6 +7,7 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(&m_mainMenu);
     m_settingsMenu.addEventListener(&m_settingsMenu);
     m_settingsMenu.addEventListener(&m_player2Menu);
+    m_settingsMenu.addEventListener(&m_lanMenu);
     m_settingsMenu.sendAllSiganl();
 }
 
@@ -31,7 +32,6 @@ void GraphicInteface::updateGraphic()
         setDisplayView(m_settingsMenu.updateView());
         break;
     case View::GraphicView::Player2Menu:
-        m_gameView.setAiPlayer(false);
         setDisplayView(m_player2Menu.updateView());
         break;
     case View::GraphicView::GamePlayer1:
@@ -43,6 +43,15 @@ void GraphicInteface::updateGraphic()
         m_gameView.setAiPlayer(false);
         m_gameView.setDisplayNextView(GameView::GraphicView::GameOffline);
         setDisplayView(m_gameView.updateView());
+        break;
+    case View::GraphicView::LanMenu:
+        setDisplayView(m_lanMenu.updateView());
+        break;
+    case View::GraphicView::CreateHost:
+        setDisplayView(m_mainMenu.updateView());
+        break;
+    case View::GraphicView::ConnectToHost:
+        setDisplayView(m_mainMenu.updateView());
         break;
     default:
         break;
