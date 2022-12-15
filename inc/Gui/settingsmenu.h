@@ -81,10 +81,13 @@ private:
      */
     int getActualResorution();
 
-    int m_audio {100};                                  //! Volume of sounds.
-    std::vector<sf::VideoMode> m_availabeResolution;    //! Stores all supported resolutions of monitor.
-    int m_selectResolution {0};                         //! Select resolution.
-    std::vector<SettingsEventListeners*> m_listeners;   //! Vector of listeners.
+    void checkAvailableResoluution();
+
+    int m_audio {100};                                      //! Volume of sounds.
+    std::vector<sf::VideoMode> m_availabeResolution;        //! Stores all supported resolutions of monitor.
+    std::vector<std::string>   m_proportionsOfResolution;   //! Proportions of resolution
+    int m_selectResolution {0};                             //! Select resolution.
+    std::vector<SettingsEventListeners*> m_listeners;       //! Vector of listeners.
 };
 
 
