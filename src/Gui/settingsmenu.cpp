@@ -17,7 +17,7 @@ SettingsMenu::SettingsMenu(sf::RenderWindow & window) : View{window}
 //        delete tempText_ptr;      // I don't know why this doesn't work.
     }
     this->setCountMenuOptions(quantityMenuOptions);             // Sets quantity menu options for display on this view.
-    m_availabeResolution = sf::VideoMode::getFullscreenModes();
+    checkAvailableResoluution();
     setTextString();
     updateMenuTextLook();                                       // Sets strings for text in the view.
     setDisplayNextView(SettingsMenu::GraphicView::SettingsMenu);    // Sets default next view for display.
@@ -37,9 +37,9 @@ void SettingsMenu::setTextString()
     m_menuOptions.at(SettingsMenuOptions::AUDIO).setString("1.   Audio           " + std::to_string(getVolumeAudio()) +'%');
     m_menuOptions.at(SettingsMenuOptions::RESOLUTION).setString("2.   Resolution    " + std::to_string(m_availabeResolution.at(getSelectResolution()).width) + 'x'
                                     + std::to_string(m_availabeResolution.at(getSelectResolution()).height)
-                                    + ' ' + std::to_string(m_availabeResolution.at(getSelectResolution()).bitsPerPixel) + "Bit");
-    m_menuOptions.at(SettingsMenuOptions::APPLY).setString("3.   Apply");
-    m_menuOptions.at(SettingsMenuOptions::RBACK).setString("4.   Back");
+                                    + " " + m_proportionsOfResolution.at(getSelectResolution()));
+    m_menuOptions.at(SettingsMenuOptions::APPLY).setString("4.   Apply");
+    m_menuOptions.at(SettingsMenuOptions::RBACK).setString("5.   Back");
 
 }
 
@@ -88,6 +88,37 @@ int SettingsMenu::getActualResorution()
     std::cout << "This resolution isn't into vector of available resolution";
     return -1;
 }
+
+void SettingsMenu::checkAvailableResoluution()
+{
+    const std::string proportions[] = {"4:3", "16:9", "16:10"};
+    const unsigned int resolutionWidth[3][8] = {{640, 800, 1024, 1280, 1600, 2048, 0, },
+                                          {1280, 1366, 1024, 1600, 1920, 2048, 2560, 4096},
+                                          {1280, 1440, 1600, 1680, 1920, 2560, 0, 0}};
+    const unsigned int resolutionHeight[3][8] = {{480, 600, 768, 1050, 1200, 1536, 0, },
+                                          {720, 768, 600, 900, 1080, 1152, 1440, 2304},
+                                          {800, 900, 1024, 1050, 1200, 1600, 0, 0}};
+    sf::VideoMode* videoMode = NULL;
+
+    for(int i = 0; i < 3; i++)
+        for(int j = 0; j < 8; j++)
+        {
+            videoMode = new sf::VideoMode(resolutionWidth[i][j], resolutionHeight[i][j]);
+            if(videoMode == NULL)
+            {
+                std::cout << "void SettingsMenu::checkAvailableResoluution(): Don't create sf::VideoMode" << std::endl;
+            }
+            if(videoMode->isValid())
+            {
+                m_availabeResolution.push_back(*videoMode);
+                m_proportionsOfResolution.push_back(proportions[i]);
+            }
+            delete videoMode;
+        }
+    setSelectResolution(getActualResorution());
+}
+
+
 
 void SettingsMenu::handleInputKeyboard()
 {
