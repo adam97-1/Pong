@@ -126,9 +126,9 @@ private:
     Text m_score;                       //! Score
     int m_startTime {4};                //! Delay to ball start
     Text m_statrtTimeText;              //! Text delay to ball start
-    sf::Music m_audioKnock;
-    sf::Music m_audioLostPoint;
-    bool m_AiPlayer;
+    sf::Music m_audioKnock;             //! Sound for knock ball
+    sf::Music m_audioLostPoint;         //! Sound for lost point
+    bool m_AiPlayer;                    //! Information about enable computer player
 };
 
 #endif // GAMEVIEW_H

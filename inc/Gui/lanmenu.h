@@ -3,6 +3,10 @@
 
 #include "view.h"
 
+/*!
+ * \brief The LanMenu class inherits from View.
+ * This class contains all elements for display on main menu.
+ */
 class LanMenu : public View
 {
 public:

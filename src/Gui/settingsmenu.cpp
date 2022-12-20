@@ -17,7 +17,7 @@ SettingsMenu::SettingsMenu(sf::RenderWindow & window) : View{window}
 //        delete tempText_ptr;      // I don't know why this doesn't work.
     }
     this->setCountMenuOptions(quantityMenuOptions);             // Sets quantity menu options for display on this view.
-    checkAvailableResoluution();
+    checkAvailableResolution();
     setTextString();
     updateMenuTextLook();                                       // Sets strings for text in the view.
     setDisplayNextView(SettingsMenu::GraphicView::SettingsMenu);    // Sets default next view for display.
@@ -89,7 +89,7 @@ int SettingsMenu::getActualResorution()
     return -1;
 }
 
-void SettingsMenu::checkAvailableResoluution()
+void SettingsMenu::checkAvailableResolution()
 {
     const std::string proportions[] = {"4:3", "16:9", "16:10"};
     const unsigned int resolutionWidth[3][8] = {{640, 800, 1024, 1280, 1600, 2048, 0, },
@@ -131,6 +131,7 @@ void SettingsMenu::handleInputKeyboard()
     //-----------------------------------------------------------------------
     if(holdKay(sf::Keyboard::Key::Left, sf::milliseconds(200)) || holdKay(sf::Keyboard::Key::D, sf::milliseconds(200)))
     {
+        m_audioSelectOption.play();
         // Change volume of audio
         if(getSelectMenuOptions() == SettingsMenuOptions::AUDIO)
         {

@@ -75,7 +75,7 @@ View::GraphicView GraphicInteface::getDisplayView() const
 
 void GraphicInteface::onSettingsChangeResolution(sf::VideoMode videoMode)
 {
-    m_window.create(videoMode, "Pong", sf::Style::Default);
+    m_window.create(videoMode, "Pong", sf::Style::Fullscreen);
     m_window.setFramerateLimit(60);
 }
 

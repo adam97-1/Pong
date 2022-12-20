@@ -6,6 +6,10 @@
 
 #define _emit(x) for (uint8_t i = 0; i < m_listeners.size(); i++) m_listeners.at(i)->x
 
+/*!
+ * \brief The SettingsMenu class inherits from View.
+ * This class contains all elements for display on main menu.
+ */
 class SettingsMenu : public View
 {
 public:
@@ -21,8 +25,21 @@ public:
      */
     GraphicView updateView();
 
+    /*!
+     * \brief addEventListener adds object to handle events from class inherits SettingsEventListeners.
+     * \param listener is pointer to object inherits SettingsEventListeners.
+     */
     void addEventListener(SettingsEventListeners * listener);
+
+    /*!
+     * \brief removeEventListener removes object to handle events from class inherits SettingsEventListeners.
+     * \param listener is pointer to object inherits SettingsEventListeners.
+     */
     void removeEventListener(SettingsEventListeners * listener);
+
+    /*!
+     * \brief sendAllSiganl sends all signals.
+     */
     void sendAllSiganl();
 
 protected:
@@ -81,7 +98,10 @@ private:
      */
     int getActualResorution();
 
-    void checkAvailableResoluution();
+    /*!
+     * \brief checkAvailableResolution if monitors supported then It adds resolution for availableResolution.
+     */
+    void checkAvailableResolution();
 
     int m_audio {100};                                      //! Volume of sounds.
     std::vector<sf::VideoMode> m_availabeResolution;        //! Stores all supported resolutions of monitor.
