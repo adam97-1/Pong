@@ -12,7 +12,7 @@
 
 
 /*!
- * \brief The GraphicInteface is the main graphic class.
+ * \brief The GraphicInteface is the main graphic class. This class inherits from SettingsEventListeners.
  */
 class GraphicInteface : public SettingsEventListeners
 {
@@ -48,13 +48,13 @@ public:
     View::GraphicView getDisplayView() const;
 
 private:
-    sf::RenderWindow m_window;                                      //! Graphic window.
-    MainMenu m_mainMenu {m_window};                                 //! Main menu view.
-    GameView m_gameView {m_window};                                 //! Game view.
-    SettingsMenu m_settingsMenu {m_window};                         //! Settings menu view.
-    Player2Menu m_player2Menu   {m_window};
-    LanMenu m_lanMenu {m_window};
-    OnlineMenu m_onlineMenu {m_window};
+    sf::RenderWindow m_window;                                          //! Graphic window.
+    MainMenu m_mainMenu {m_window};                                     //! Main menu view.
+    GameView m_gameView {m_window};                                     //! Game view.
+    SettingsMenu m_settingsMenu {m_window};                             //! Settings menu view.
+    Player2Menu m_player2Menu   {m_window};                             //! Menu for Multiplayer
+    LanMenu m_lanMenu {m_window};                                       //! Menu for connect to LAN
+    OnlineMenu m_onlineMenu {m_window};                                 //! Menu for connect to WAN
     View::GraphicView m_displayView {View::GraphicView::MainMenu};      //! Display view.
 
     /*!

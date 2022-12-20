@@ -3,6 +3,10 @@
 
 #include "view.h"
 
+/*!
+ * \brief The OnlineMenu class inherits from View.
+ * This class contains all elements for display on main menu.
+ */
 class OnlineMenu : public View
 {
 public:

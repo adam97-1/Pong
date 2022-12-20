@@ -3,6 +3,10 @@
 
 #include "Gui/view.h"
 
+/*!
+ * \brief The Player2Menu class inherits from View.
+ * This class contains all elements for display on main menu.
+ */
 class Player2Menu : public View
 {
 public:
