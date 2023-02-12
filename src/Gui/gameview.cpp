@@ -188,7 +188,7 @@ void GameView::AiPlayer()
 
 void GameView::resetGame()
 {
-    sf::Vector2u windowSize = accessWindow().getSize();
+    sf::Vector2u windowSize(m_actualResolution.width, m_actualResolution.height);
 
     m_startTime = 4;
     m_statrtTimeText.setString(std::to_string(m_startTime));
@@ -218,7 +218,7 @@ void GameView::draw(sf::RenderTarget &target, sf::RenderStates) const
 
 void GameView::handleInputKeyboard()
 {
-    float windowSizeY = static_cast<float>(accessWindow().getSize().y);
+    float windowSizeY = static_cast<float>(m_actualResolution.height);
     if(!accessWindow().hasFocus())
         return;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -257,7 +257,7 @@ void GameView::handleInputKeyboard()
 
 void GameView::serws()
 {
-    sf::Vector2u windowSize = accessWindow().getSize();
+    sf::Vector2u windowSize(m_actualResolution.width, m_actualResolution.height);
 
     m_startTime = 4;
     m_statrtTimeText.setString(std::to_string(m_startTime));
@@ -286,9 +286,10 @@ void GameView::timer()
         if(m_startTime == -1)
         {
             sf::Vector2f startVelocity;
+            sf::Vector2u windowSize(m_actualResolution.width, m_actualResolution.height);
             m_startTime--;
-            startVelocity.x = (std::rand()%2) ? static_cast<int>(accessWindow().getSize().y)/2 : -(static_cast<int>(accessWindow().getSize().y)/2);
-            startVelocity.y = (std::rand()%2) ? static_cast<int>(accessWindow().getSize().y)/2+std::rand() % static_cast<int>(accessWindow().getSize().y)/2 : -(static_cast<int>(accessWindow().getSize().y)/2+std::rand() % static_cast<int>(accessWindow().getSize().y)/2);
+            startVelocity.x = (std::rand()%2) ? static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2);
+            startVelocity.y = (std::rand()%2) ? static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2 : -(static_cast<int>(windowSize.y)/2+std::rand() % static_cast<int>(windowSize.y)/2);
             m_ball.setVelocity(startVelocity);
         }
         clock.restart();
@@ -317,6 +318,7 @@ void GameView::updatePlayers()
 
 void GameView::onSettingsChangeResolution(sf::VideoMode videoMode)
 {
+    m_actualResolution = videoMode;
     // Change size of ball
     m_ball.setSize(sf::Vector2f(videoMode.height/60,videoMode.height/60));
     sf::FloatRect rect = m_ball.getLocalBounds();
