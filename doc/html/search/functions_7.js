@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['setcountmenuoptions_78',['setCountMenuOptions',['../class_view.html#ab2a5e61d83b9b1db5f881af8eda30340',1,'View']]],
-  ['setdisplaynextview_79',['setDisplayNextView',['../class_view.html#a6f237e9acd2abb6eb6e23ff479a65ce0',1,'View']]],
-  ['setdisplayview_80',['setDisplayView',['../class_graphic_inteface.html#a3c471403083d0d22d37b332a95621d23',1,'GraphicInteface']]],
-  ['setmenutextposition_81',['setMenuTextPosition',['../class_view.html#ac866d5c04811bc45b314f8b2f48ac42c',1,'View']]],
-  ['setselectmenuoptions_82',['setSelectMenuOptions',['../class_view.html#a096af3cbfcc11d9b5ce9ed42b0a3a797',1,'View']]],
-  ['settingsmenu_83',['SettingsMenu',['../class_settings_menu.html#aca230d09797f6632422507893e8895de',1,'SettingsMenu']]]
+  ['rectangleobject_102',['RectangleObject',['../class_rectangle_object.html#a1f6d40919e179f074efa49e696b5560c',1,'RectangleObject']]],
+  ['releasedkey_103',['releasedKey',['../class_view.html#aefc8ddfb1ae51f778831bac5a64b1379',1,'View']]],
+  ['removeeventlistener_104',['removeEventListener',['../class_settings_menu.html#afcd46a04ba4012efa34176d5e43c2183',1,'SettingsMenu']]],
+  ['resetgame_105',['resetGame',['../class_game_view.html#afcf3b7b6180a3593c998e3c18da8631c',1,'GameView']]],
+  ['resetmindistcollision_106',['resetMinDistCollision',['../class_rectangle_object.html#a22bf5b86c4e4c086cc0e206e570c884d',1,'RectangleObject']]]
 ];
