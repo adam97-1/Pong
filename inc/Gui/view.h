@@ -20,13 +20,9 @@ public:
     {
         MainMenu        =   0,
         SettingsMenu    =   1,
-        Player2Menu     =   2,
-        GamePlayer1     =   3,
-        GameOffline     =   4,
-        LanMenu         =   6,
-        CreateHost      =   7,
-        ConnectToHost   =   8,
-        OnlineMenu      =   9
+        GamePlayer1     =   2,
+        GamePlayer2     =   3,
+        GameInfo        =   4
     };
 
     /*!
