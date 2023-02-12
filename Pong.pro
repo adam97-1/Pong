@@ -27,23 +27,18 @@ unix{
 }
 
 SOURCES += \
-    src/Gui/lanmenu.cpp \
-    src/Gui/onlinemenu.cpp \
     src/gamebounds.cpp \
     src/Gui/gameview.cpp \
-    src/Gui/settingsmenu.cpp \
     src/Gui/mainmenu.cpp \
     src/Gui/graphicInterface.cpp \
     src/main.cpp \
     src/Gui/view.cpp \
     src/Gui/text.cpp \
-    src/Gui/player2menu.cpp \
+    src/Gui/settingsmenu.cpp \
     src/player.cpp \
     src/rectangleobject.cpp
 
 HEADERS += \
-    inc/Gui/lanmenu.h \
-    inc/Gui/onlinemenu.h \
     inc/gamebounds.h \
     inc/Gui/gameview.h \
     inc/Gui/graphicInterface.h \
@@ -51,7 +46,6 @@ HEADERS += \
     inc/Gui/mainmenu.h \
     inc/Gui/text.h \
     inc/Gui/settingsmenu.h \
-    inc/Gui/player2menu.h \
     inc/player.h \
     inc/rectangleobject.h \
     inc/settingseventlisteners.h

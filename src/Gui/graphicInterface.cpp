@@ -6,9 +6,6 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(&m_gameView);
     m_settingsMenu.addEventListener(&m_mainMenu);
     m_settingsMenu.addEventListener(&m_settingsMenu);
-    m_settingsMenu.addEventListener(&m_player2Menu);
-    m_settingsMenu.addEventListener(&m_lanMenu);
-    m_settingsMenu.addEventListener(&m_onlineMenu);
     m_settingsMenu.sendAllSiganl();
 }
 
@@ -32,30 +29,15 @@ void GraphicInteface::updateGraphic()
     case View::GraphicView::SettingsMenu:
         setDisplayView(m_settingsMenu.updateView());
         break;
-    case View::GraphicView::Player2Menu:
-        setDisplayView(m_player2Menu.updateView());
-        break;
     case View::GraphicView::GamePlayer1:
         m_gameView.setAiPlayer(true);
         m_gameView.setDisplayNextView(GameView::GraphicView::GamePlayer1);
         setDisplayView(m_gameView.updateView());
         break;
-    case View::GraphicView::GameOffline:
+    case View::GraphicView::GamePlayer2:
         m_gameView.setAiPlayer(false);
-        m_gameView.setDisplayNextView(GameView::GraphicView::GameOffline);
+        m_gameView.setDisplayNextView(GameView::GraphicView::GamePlayer2);
         setDisplayView(m_gameView.updateView());
-        break;
-    case View::GraphicView::LanMenu:
-        setDisplayView(m_lanMenu.updateView());
-        break;
-    case View::GraphicView::CreateHost:
-        setDisplayView(m_mainMenu.updateView());
-        break;
-    case View::GraphicView::ConnectToHost:
-        setDisplayView(m_mainMenu.updateView());
-        break;
-    case View::GraphicView::OnlineMenu:
-        setDisplayView(m_onlineMenu.updateView());
         break;
     default:
         break;
@@ -75,7 +57,7 @@ View::GraphicView GraphicInteface::getDisplayView() const
 
 void GraphicInteface::onSettingsChangeResolution(sf::VideoMode videoMode)
 {
-    m_window.create(videoMode, "Pong", sf::Style::Default);
+    m_window.create(videoMode, "Pong", sf::Style::Close);
     m_window.setFramerateLimit(60);
 }
 

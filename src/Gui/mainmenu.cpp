@@ -54,7 +54,7 @@ void MainMenu::handleInputKeyboard()
             setDisplayNextView(MainMenu::GraphicView::GamePlayer1);
             break;
         case MainMenuOptions::Player2:
-            setDisplayNextView(MainMenu::GraphicView::Player2Menu);
+            setDisplayNextView(MainMenu::GraphicView::GamePlayer2);
             break;
         case MainMenuOptions::Settings:
             setDisplayNextView(MainMenu::GraphicView::SettingsMenu);

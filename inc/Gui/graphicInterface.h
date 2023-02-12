@@ -6,9 +6,6 @@
 #include "Gui/settingsmenu.h"
 #include "settingseventlisteners.h"
 #include "Gui/gameview.h"
-#include "Gui/player2menu.h"
-#include "Gui/lanmenu.h"
-#include "Gui/onlinemenu.h"
 
 
 /*!
@@ -52,9 +49,6 @@ private:
     MainMenu m_mainMenu {m_window};                                     //! Main menu view.
     GameView m_gameView {m_window};                                     //! Game view.
     SettingsMenu m_settingsMenu {m_window};                             //! Settings menu view.
-    Player2Menu m_player2Menu   {m_window};                             //! Menu for Multiplayer
-    LanMenu m_lanMenu {m_window};                                       //! Menu for connect to LAN
-    OnlineMenu m_onlineMenu {m_window};                                 //! Menu for connect to WAN
     View::GraphicView m_displayView {View::GraphicView::MainMenu};      //! Display view.
 
     /*!
