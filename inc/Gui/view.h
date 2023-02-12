@@ -21,7 +21,8 @@ public:
         MainMenu        =   0,
         SettingsMenu    =   1,
         GamePlayer1     =   2,
-        GamePlayer2     =   3
+        GamePlayer2     =   3,
+        GameInfo        =   4
     };
 
     /*!

@@ -5,6 +5,7 @@ GraphicInteface::GraphicInteface()
     m_settingsMenu.addEventListener(this);
     m_settingsMenu.addEventListener(&m_gameView);
     m_settingsMenu.addEventListener(&m_mainMenu);
+    m_settingsMenu.addEventListener(&m_gameInfo);
     m_settingsMenu.addEventListener(&m_settingsMenu);
     m_settingsMenu.sendAllSiganl();
 }
@@ -28,6 +29,9 @@ void GraphicInteface::updateGraphic()
         break;
     case View::GraphicView::SettingsMenu:
         setDisplayView(m_settingsMenu.updateView());
+        break;
+    case View::GraphicView::GameInfo:
+        setDisplayView(m_gameInfo.updateView());
         break;
     case View::GraphicView::GamePlayer1:
         m_gameView.setAiPlayer(true);

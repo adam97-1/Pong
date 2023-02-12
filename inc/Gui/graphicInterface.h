@@ -6,6 +6,7 @@
 #include "Gui/settingsmenu.h"
 #include "settingseventlisteners.h"
 #include "Gui/gameview.h"
+#include "Gui/gameinfo.h"
 
 
 /*!
@@ -49,6 +50,7 @@ private:
     MainMenu m_mainMenu {m_window};                                     //! Main menu view.
     GameView m_gameView {m_window};                                     //! Game view.
     SettingsMenu m_settingsMenu {m_window};                             //! Settings menu view.
+    GameInfo m_gameInfo {m_window};                                     //! Game information view.
     View::GraphicView m_displayView {View::GraphicView::MainMenu};      //! Display view.
 
     /*!

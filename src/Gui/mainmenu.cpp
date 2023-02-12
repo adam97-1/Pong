@@ -60,6 +60,7 @@ void MainMenu::handleInputKeyboard()
             setDisplayNextView(MainMenu::GraphicView::SettingsMenu);
             break;
         case MainMenuOptions::GameInfo:
+            setDisplayNextView(MainMenu::GraphicView::GameInfo);
             break;
         case MainMenuOptions::Exit:
             accessWindow().close();
