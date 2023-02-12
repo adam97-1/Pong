@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['settingsmenu_50',['SettingsMenu',['../class_settings_menu.html',1,'']]]
+  ['player_70',['Player',['../class_player.html',1,'']]]
 ];

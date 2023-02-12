@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['m_5fcountmenuoptions_92',['m_countMenuOptions',['../class_view.html#a401a34cf3a84c6ba0c22e9527cdf79a4',1,'View']]],
-  ['m_5fmenuoptions_93',['m_menuOptions',['../class_view.html#a5831d305802bd5b92a41f557d421f2ec',1,'View']]],
-  ['m_5ftitle_94',['m_title',['../class_view.html#a8f69a30934a2739c74ad8f9af2ff7e62',1,'View']]]
+  ['functioncollisionx_130',['functionCollisionX',['../class_rectangle_object.html#af0e680133916fbba1b7d2532d0062258',1,'RectangleObject']]],
+  ['functioncollisiony_131',['functionCollisionY',['../class_rectangle_object.html#a13f09d4c85858019ecd495c623dc75cf',1,'RectangleObject']]]
 ];

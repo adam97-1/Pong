@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['updategraphic_40',['updateGraphic',['../class_graphic_inteface.html#a8443fd75a801cef69692e59158fd70fe',1,'GraphicInteface']]],
-  ['updatemenutextlook_41',['updateMenuTextLook',['../class_view.html#a8e60b91c0da59d875dee5645275315fe',1,'View']]],
-  ['updateview_42',['updateView',['../class_main_menu.html#a73616df7800577bd75ddca732deac799',1,'MainMenu::updateView()'],['../class_settings_menu.html#a94df314b0379af179b0754d8d024e7f1',1,'SettingsMenu::updateView()'],['../class_view.html#a9d41d87b164fd56570e4d7756c6d7132',1,'View::updateView()']]]
+  ['readme_34',['README',['../md__unit_test__pong__r_e_a_d_m_e.html',1,'']]],
+  ['rectangleobject_35',['RectangleObject',['../class_rectangle_object.html',1,'RectangleObject'],['../class_rectangle_object.html#a1f6d40919e179f074efa49e696b5560c',1,'RectangleObject::RectangleObject()']]],
+  ['releasedkey_36',['releasedKey',['../class_view.html#aefc8ddfb1ae51f778831bac5a64b1379',1,'View']]],
+  ['removeeventlistener_37',['removeEventListener',['../class_settings_menu.html#afcd46a04ba4012efa34176d5e43c2183',1,'SettingsMenu']]],
+  ['resetgame_38',['resetGame',['../class_game_view.html#afcf3b7b6180a3593c998e3c18da8631c',1,'GameView']]],
+  ['resetmindistcollision_39',['resetMinDistCollision',['../class_rectangle_object.html#a22bf5b86c4e4c086cc0e206e570c884d',1,'RectangleObject']]]
 ];

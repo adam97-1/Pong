@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['draw_67',['draw',['../class_main_menu.html#a4721b206e750bedb4345a0794877d8e3',1,'MainMenu::draw()'],['../class_settings_menu.html#aeaba235ceb67c5d7ae0665cfef456e8e',1,'SettingsMenu::draw()']]]
+  ['checkmindistcollisionx_81',['checkMinDistCollisionX',['../class_rectangle_object.html#a273bc7671affaff0712b09135bb99ff1',1,'RectangleObject']]],
+  ['checkmindistcollisiony_82',['checkMinDistCollisionY',['../class_rectangle_object.html#a0a890f104b318f15770ec5386dca2519',1,'RectangleObject']]]
 ];

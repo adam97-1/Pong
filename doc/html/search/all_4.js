@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['m_5fcountmenuoptions_12',['m_countMenuOptions',['../class_view.html#a401a34cf3a84c6ba0c22e9527cdf79a4',1,'View']]],
-  ['m_5fmenuoptions_13',['m_menuOptions',['../class_view.html#a5831d305802bd5b92a41f557d421f2ec',1,'View']]],
-  ['m_5ftitle_14',['m_title',['../class_view.html#a8f69a30934a2739c74ad8f9af2ff7e62',1,'View']]],
-  ['main_15',['main',['../_pong_2src_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp'],['../_unit_test-_pong_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp']]],
-  ['main_2ecpp_16',['main.cpp',['../_pong_2src_2main_8cpp.html',1,'(Global Namespace)'],['../_unit_test-_pong_2main_8cpp.html',1,'(Global Namespace)']]],
-  ['mainmenu_17',['MainMenu',['../class_main_menu.html',1,'MainMenu'],['../class_main_menu.html#a270c5eef7078d8dcd8d8dc0303875848',1,'MainMenu::MainMenu()']]],
-  ['mainmenu_2ecpp_18',['mainmenu.cpp',['../mainmenu_8cpp.html',1,'']]],
-  ['mainmenu_2eh_19',['mainmenu.h',['../mainmenu_8h.html',1,'']]],
-  ['menu_20',['MENU',['../class_view.html#a11eaf829cfb9b948d03d21eaebeb6c5aa1070aef30ae1a01ab7627f8222f6ae85',1,'View']]]
+  ['gamebounds_10',['GameBounds',['../class_game_bounds.html',1,'GameBounds'],['../class_game_bounds.html#a1e3c39cf4a5d6e5b8679c7aa8847fd10',1,'GameBounds::GameBounds()']]],
+  ['gameinfo_11',['GameInfo',['../class_game_info.html',1,'GameInfo'],['../class_game_info.html#a907b4d99bf074a81ac3276bbae8c4ecb',1,'GameInfo::GameInfo()']]],
+  ['gameview_12',['GameView',['../class_game_view.html',1,'GameView'],['../class_game_view.html#ac31f9af15e231db134b4afb79ff24f9f',1,'GameView::GameView(sf::RenderWindow &amp;window)']]],
+  ['getaiplayer_13',['getAiPlayer',['../class_game_view.html#a8d0402c6719c86b03d4fdb6c6aae558c',1,'GameView']]],
+  ['getcountmenuoptions_14',['getCountMenuOptions',['../class_view.html#a3eeb702cdac2494471b1b8c0e82e1834',1,'View']]],
+  ['getdisplaynextview_15',['getDisplayNextView',['../class_view.html#aad8afcd72d7bd9d946b74b9dcc12111c',1,'View']]],
+  ['getdisplayview_16',['getDisplayView',['../class_graphic_inteface.html#ae95cf71d5bbba12a1063b0c73930cd4b',1,'GraphicInteface']]],
+  ['getpoints_17',['getPoints',['../class_player.html#a3b0c0f84462c331d4f4cb1decb3e74dc',1,'Player']]],
+  ['getselectmenuoptions_18',['getSelectMenuOptions',['../class_view.html#a8a84d01232407e208cce2587f6a3266f',1,'View']]],
+  ['getvelocity_19',['getVelocity',['../class_rectangle_object.html#aeaa1d38bba23d432d7062ac9e6ba91b6',1,'RectangleObject']]],
+  ['graphicinteface_20',['GraphicInteface',['../class_graphic_inteface.html',1,'GraphicInteface'],['../class_graphic_inteface.html#acc095aaf57926e0b3477d7a3852d1abb',1,'GraphicInteface::GraphicInteface()']]],
+  ['graphicview_21',['GraphicView',['../class_view.html#a11eaf829cfb9b948d03d21eaebeb6c5a',1,'View']]]
 ];
