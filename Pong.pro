@@ -53,5 +53,6 @@ HEADERS += \
     inc/Gui/settingsmenu.h \
     inc/Gui/player2menu.h \
     inc/player.h \
-    inc/rectangleobject.h
+    inc/rectangleobject.h \
+    inc/settingseventlisteners.h
 

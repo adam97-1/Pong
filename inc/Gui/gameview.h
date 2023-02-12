@@ -128,6 +128,7 @@ private:
     Text m_statrtTimeText;              //! Text delay to ball start
     sf::Music m_audioKnock;             //! Sound for knock ball
     sf::Music m_audioLostPoint;         //! Sound for lost point
+    sf::VideoMode m_actualResolution;   //! Actual resolution of monitor.
     bool m_AiPlayer;                    //! Information about enable computer player
 };
 
