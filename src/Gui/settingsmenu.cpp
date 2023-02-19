@@ -115,7 +115,7 @@ void SettingsMenu::checkAvailableResolution()
             }
             delete videoMode;
         }
-    setSelectResolution(getActualResorution());
+    setSelectResolution(getActualResorution()-1);
 }
 
 
